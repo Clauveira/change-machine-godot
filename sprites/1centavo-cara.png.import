@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/moedas_real.png-e3c9c3682807cbd9b4f15808f39f6f95.stex"
+path="res://.import/1centavo-cara.png-207b3261cf9bb15f715d928131990259.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/moedas_real.png"
-dest_files=[ "res://.import/moedas_real.png-e3c9c3682807cbd9b4f15808f39f6f95.stex" ]
+source_file="res://sprites/1centavo-cara.png"
+dest_files=[ "res://.import/1centavo-cara.png-207b3261cf9bb15f715d928131990259.stex" ]
 
 [params]
 

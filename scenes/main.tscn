@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://code/Main.cs" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/header.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/moeda.tscn" type="PackedScene" id=3]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -12,35 +13,247 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Header" type="Control" parent="CanvasLayer/Control"]
-anchor_right = 1.0
-margin_bottom = 39.0
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/Header"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0.266667, 0.521569, 1 )
+custom_constants/separation = 0
+
+[node name="Header" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_right = 1024.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 100, 16 )
+
+[node name="Body" type="Control" parent="CanvasLayer/Control/VBoxContainer"]
+margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer/Body"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.843137, 0.843137, 0.843137, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Header"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/Body"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 16, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 556.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 556.0
+rect_min_size = Vector2( 180, 280 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PainelMoedas" type="Control" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.345098, 0.345098, 0.345098, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Moeda1" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 338.0
+margin_bottom = 136.0
+
+[node name="Moeda2" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_right = 680.0
+margin_bottom = 136.0
+
+[node name="Moeda3" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 684.0
+margin_right = 1022.0
+margin_bottom = 136.0
+
+[node name="Moeda4" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 140.0
+margin_right = 338.0
+margin_bottom = 276.0
+
+[node name="Moeda5" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_top = 140.0
+margin_right = 680.0
+margin_bottom = 276.0
+
+[node name="Moeda6" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 684.0
+margin_top = 140.0
+margin_right = 1022.0
+margin_bottom = 276.0
+
+[node name="PainelAcoes" type="Control" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 1024.0
+margin_bottom = 556.0
+rect_min_size = Vector2( 0, 180 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.345098, 0.345098, 0.345098, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 180 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 8
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer"]
+margin_left = 10.0
+margin_top = 8.0
+margin_right = 1014.0
+margin_bottom = 268.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Gerenciamento" type="Control" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
+margin_right = 1004.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 5
 
-[node name="LabelTitulo" type="Label" parent="CanvasLayer/Control/Header"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 63.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
+margin_right = 497.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
-size_flags_vertical = 6
-text = "Título"
-align = 1
-valign = 1
+size_flags_vertical = 3
+text = "Abastecimento"
+clip_text = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
+margin_left = 507.0
+margin_right = 1004.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sangria"
+clip_text = true
+
+[node name="Calculo" type="Control" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
+margin_top = 55.0
+margin_right = 1004.0
+margin_bottom = 260.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 18
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
+margin_right = 1004.0
+margin_bottom = 56.0
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/VBoxContainer"]
+margin_top = 7.0
+margin_right = 1004.0
+margin_bottom = 21.0
+text = "Valor da conta:"
+clip_text = true
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 1004.0
+margin_bottom = 49.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
+margin_top = 74.0
+margin_right = 1004.0
+margin_bottom = 130.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/VBoxContainer2"]
+margin_top = 7.0
+margin_right = 1004.0
+margin_bottom = 21.0
+text = "Valor pago:"
+clip_text = true
+
+[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/VBoxContainer2"]
+margin_top = 25.0
+margin_right = 1004.0
+margin_bottom = 49.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
+margin_top = 148.0
+margin_right = 1004.0
+margin_bottom = 205.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_right = 984.0
+margin_bottom = 37.0
+text = "Calcular"
