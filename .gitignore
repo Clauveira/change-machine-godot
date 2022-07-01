@@ -1,0 +1,22 @@
+BLL/bin
+BLL/obj
+DTO/bin
+DTO/obj
+SAL/bin
+SAL/obj
+APP/.mono/temp
+
+# Godot
+.godot/
+.import/
+export.cfg
+export_presets.cfg
+
+# Mono
+.mono/
+APP/.mono
+data_*/
+mono_crash.*.json
+
+#VScode
+*.code-workspace
