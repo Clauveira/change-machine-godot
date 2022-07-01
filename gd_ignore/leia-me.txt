@@ -1,0 +1,3 @@
+Esta pasta será ignorada pela Godot.
+Útil para manter arquivos de edição de outros softwares junto ao projeto sem interferir na engine.
+Por exemplo arquivos .blend .ase etc.
