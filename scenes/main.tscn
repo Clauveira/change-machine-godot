@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://code/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/header.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/moeda.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/quantia_da_moeda_resultado.tscn" type="PackedScene" id=4]
+[ext_resource path="res://code/CalcularTroco.cs" type="Script" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
@@ -209,6 +210,7 @@ margin_bottom = 268.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
+script = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo"]
 anchor_right = 1.0
@@ -257,12 +259,16 @@ margin_bottom = 14.0
 text = "Valor pago:"
 clip_text = true
 
-[node name="ValorPago" type="LineEdit" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
+[node name="ValorPago" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
 margin_top = 18.0
 margin_right = 1008.0
 margin_bottom = 60.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+max_value = 1e+14
+step = 0.01
+rounded = true
+prefix = "R$"
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
 margin_top = 140.0
@@ -274,13 +280,13 @@ custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 12
 
-[node name="Button" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer"]
+[node name="CalcularButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer"]
 margin_left = 20.0
 margin_right = 988.0
 margin_bottom = 48.0
 text = "Calcular"
 
-[node name="WindowDialog" type="WindowDialog" parent="CanvasLayer"]
+[node name="ResultadoWindowDialog" type="WindowDialog" parent="CanvasLayer"]
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -290,11 +296,11 @@ margin_right = -351.0
 margin_bottom = -110.0
 window_title = "Resultado"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WindowDialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResultadoWindowDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WindowDialog/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer"]
 margin_right = 384.0
 margin_bottom = 288.0
 size_flags_horizontal = 3
@@ -304,7 +310,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 0
 
-[node name="ListaQuantiaMoedas" type="GridContainer" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer"]
+[node name="ListaQuantiaMoedas" type="GridContainer" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer"]
 margin_left = 30.0
 margin_top = 20.0
 margin_right = 354.0
@@ -315,45 +321,45 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="QuantiaDaMoedaHBox" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+[node name="QuantiaDaMoedaHBox" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
 margin_right = 160.0
 margin_bottom = 86.0
 
-[node name="QuantiaDaMoedaHBox2" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+[node name="QuantiaDaMoedaHBox2" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
 margin_left = 164.0
 margin_right = 324.0
 margin_bottom = 86.0
 
-[node name="QuantiaDaMoedaHBox3" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+[node name="QuantiaDaMoedaHBox3" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
 margin_top = 90.0
 margin_right = 160.0
 margin_bottom = 176.0
 
-[node name="QuantiaDaMoedaHBox4" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+[node name="QuantiaDaMoedaHBox4" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
 margin_left = 164.0
 margin_top = 90.0
 margin_right = 324.0
 margin_bottom = 176.0
 
-[node name="QuantiaDaMoedaHBox5" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+[node name="QuantiaDaMoedaHBox5" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
 margin_top = 180.0
 margin_right = 160.0
 margin_bottom = 266.0
 
-[node name="QuantiaDaMoedaHBox6" parent="CanvasLayer/WindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+[node name="QuantiaDaMoedaHBox6" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
 margin_left = 164.0
 margin_top = 180.0
 margin_right = 324.0
 margin_bottom = 266.0
 
-[node name="TotalControl" type="Control" parent="CanvasLayer/WindowDialog/VBoxContainer"]
+[node name="TotalControl" type="Control" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer"]
 margin_top = 292.0
 margin_right = 384.0
 margin_bottom = 322.0
 rect_min_size = Vector2( 0, 30 )
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/WindowDialog/VBoxContainer/TotalControl"]
+[node name="TotalLabel" type="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/TotalControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -362,7 +368,7 @@ text = "Total: 3,95"
 align = 1
 valign = 1
 
-[node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/WindowDialog/VBoxContainer"]
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer"]
 margin_top = 326.0
 margin_right = 384.0
 margin_bottom = 376.0
@@ -373,23 +379,25 @@ custom_constants/margin_right = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/WindowDialog/VBoxContainer/ButtonsMarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer"]
 margin_left = 4.0
 margin_right = 380.0
 margin_bottom = 42.0
 custom_constants/separation = 16
 
-[node name="ButtonCancelar" type="Button" parent="CanvasLayer/WindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer"]
+[node name="ButtonCancelar" type="Button" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer"]
 margin_right = 180.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Cancelar"
 
-[node name="ButtonOk" type="Button" parent="CanvasLayer/WindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer"]
+[node name="ButtonOk" type="Button" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer"]
 margin_left = 196.0
 margin_right = 376.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Ok"
+
+[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
