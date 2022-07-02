@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://code/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/header.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/moeda.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/quantia_da_moeda_resultado.tscn" type="PackedScene" id=4]
 [ext_resource path="res://code/CalcularTroco.cs" type="Script" id=5]
+[ext_resource path="res://sprites/icons/circle-minus.png" type="Texture" id=6]
+[ext_resource path="res://sprites/icons/alert.png" type="Texture" id=7]
+[ext_resource path="res://sprites/icons/circle-plus.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
@@ -210,6 +213,7 @@ margin_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Abastecimento"
+icon = ExtResource( 8 )
 clip_text = true
 
 [node name="SangriaButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
@@ -219,6 +223,7 @@ margin_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Sangria"
+icon = ExtResource( 6 )
 clip_text = true
 
 [node name="Calculo" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
@@ -477,6 +482,168 @@ margin_bottom = 42.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Ok"
+icon = ExtResource( 7 )
+expand_icon = true
+
+[node name="AbastecimentoWindowDialog" type="WindowDialog" parent="CanvasLayer"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 911.0
+margin_top = 29.0
+margin_right = 811.0
+margin_bottom = -362.0
+rect_min_size = Vector2( 380, 380 )
+window_title = "Abastecimento/Sangria"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 380, 380 )
+custom_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer"]
+margin_right = 380.0
+margin_bottom = 343.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 30
+custom_constants/margin_top = 20
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 0
+
+[node name="ListaQuantiaMoedas" type="GridContainer" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 350.0
+margin_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="QuantiaDaMoedaHBox" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox" index="0"]
+margin_right = 119.0
+margin_bottom = 105.0
+TipoMoeda = 0
+
+[node name="Label" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox" index="1"]
+margin_left = 123.0
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="QuantiaDaMoedaHBox2" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+margin_left = 162.0
+margin_right = 320.0
+margin_bottom = 105.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2" index="0"]
+margin_right = 119.0
+margin_bottom = 105.0
+TipoMoeda = 1
+
+[node name="Label" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2" index="1"]
+margin_left = 123.0
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="QuantiaDaMoedaHBox3" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+margin_top = 109.0
+margin_right = 158.0
+margin_bottom = 214.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox3" index="0"]
+margin_right = 119.0
+margin_bottom = 105.0
+TipoMoeda = 2
+
+[node name="Label" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox3" index="1"]
+margin_left = 123.0
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="QuantiaDaMoedaHBox4" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+margin_left = 162.0
+margin_top = 109.0
+margin_right = 320.0
+margin_bottom = 214.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4" index="0"]
+margin_right = 119.0
+margin_bottom = 105.0
+TipoMoeda = 3
+
+[node name="Label" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4" index="1"]
+margin_left = 123.0
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="QuantiaDaMoedaHBox5" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+margin_top = 218.0
+margin_right = 158.0
+margin_bottom = 323.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5" index="0"]
+margin_right = 119.0
+margin_bottom = 105.0
+
+[node name="Label" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5" index="1"]
+margin_left = 123.0
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="QuantiaDaMoedaHBox6" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
+margin_left = 162.0
+margin_top = 218.0
+margin_right = 320.0
+margin_bottom = 323.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6" index="0"]
+margin_right = 119.0
+margin_bottom = 105.0
+TipoMoeda = 5
+
+[node name="Label" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6" index="1"]
+margin_left = 123.0
+margin_right = 158.0
+margin_bottom = 105.0
+
+[node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer"]
+margin_top = 359.0
+margin_right = 380.0
+margin_bottom = 409.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/ButtonsMarginContainer"]
+margin_left = 4.0
+margin_right = 376.0
+margin_bottom = 42.0
+custom_constants/separation = 16
+
+[node name="ButtonCancelar" type="Button" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer"]
+margin_right = 178.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Cancelar"
+
+[node name="ButtonOk" type="Button" parent="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer"]
+margin_left = 194.0
+margin_right = 372.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Ok"
 
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
 
@@ -486,3 +653,9 @@ text = "Ok"
 [editable path="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4"]
 [editable path="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5"]
 [editable path="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox3"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6"]
