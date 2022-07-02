@@ -536,64 +536,125 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 2
 
-[node name="QuantiaDaMoedaHBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
+[node name="QuantiaDeMoedasAlterar0" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
 margin_right = 158.0
 margin_bottom = 77.0
 
-[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox/Panel/MarginContainer" index="0"]
+[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0/Panel/MarginContainer" index="0"]
 margin_right = 154.0
 margin_bottom = 73.0
 
-[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox/Panel/MarginContainer/HBoxContainer" index="0"]
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
 margin_bottom = 69.0
+TipoMoeda = 0
 
-[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox/Panel/MarginContainer/HBoxContainer" index="1"]
+[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
 margin_top = 13.0
 margin_right = 150.0
 margin_bottom = 55.0
 
-[node name="QuantiaDaMoedaHBox2" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
+[node name="QuantiaDeMoedasAlterar1" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
 margin_left = 162.0
 margin_right = 320.0
 margin_bottom = 77.0
 
-[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2/Panel/MarginContainer" index="0"]
+[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1/Panel/MarginContainer" index="0"]
 margin_right = 154.0
 margin_bottom = 73.0
 
-[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2/Panel/MarginContainer/HBoxContainer" index="0"]
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
 margin_bottom = 69.0
+TipoMoeda = 1
 
-[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2/Panel/MarginContainer/HBoxContainer" index="1"]
+[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
 margin_top = 13.0
 margin_right = 150.0
 margin_bottom = 55.0
 
-[node name="QuantiaDaMoedaHBox3" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
+[node name="QuantiaDeMoedasAlterar2" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
 margin_top = 81.0
 margin_right = 158.0
 margin_bottom = 158.0
 
-[node name="QuantiaDaMoedaHBox4" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
+[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2/Panel/MarginContainer" index="0"]
+margin_right = 154.0
+margin_bottom = 73.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2/Panel/MarginContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 69.0
+TipoMoeda = 2
+
+[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2/Panel/MarginContainer/HBoxContainer" index="1"]
+margin_left = 76.0
+margin_top = 13.0
+margin_right = 150.0
+margin_bottom = 55.0
+
+[node name="QuantiaDeMoedasAlterar3" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
 margin_left = 162.0
 margin_top = 81.0
 margin_right = 320.0
 margin_bottom = 158.0
 
-[node name="QuantiaDaMoedaHBox5" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
+[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3/Panel/MarginContainer" index="0"]
+margin_right = 154.0
+margin_bottom = 73.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3/Panel/MarginContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 69.0
+TipoMoeda = 3
+
+[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3/Panel/MarginContainer/HBoxContainer" index="1"]
+margin_left = 76.0
+margin_top = 13.0
+margin_right = 150.0
+margin_bottom = 55.0
+
+[node name="QuantiaDeMoedasAlterar4" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
 margin_top = 162.0
 margin_right = 158.0
 margin_bottom = 239.0
 
-[node name="QuantiaDaMoedaHBox6" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
+[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4/Panel/MarginContainer" index="0"]
+margin_right = 154.0
+margin_bottom = 73.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4/Panel/MarginContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 69.0
+TipoMoeda = 4
+
+[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4/Panel/MarginContainer/HBoxContainer" index="1"]
+margin_left = 76.0
+margin_top = 13.0
+margin_right = 150.0
+margin_bottom = 55.0
+
+[node name="QuantiaDeMoedasAlterar5" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
 margin_left = 162.0
 margin_top = 162.0
 margin_right = 320.0
 margin_bottom = 239.0
+
+[node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5/Panel/MarginContainer" index="0"]
+margin_right = 154.0
+margin_bottom = 73.0
+
+[node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5/Panel/MarginContainer/HBoxContainer" index="0"]
+margin_right = 72.0
+margin_bottom = 69.0
+
+[node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5/Panel/MarginContainer/HBoxContainer" index="1"]
+margin_left = 76.0
+margin_top = 13.0
+margin_right = 150.0
+margin_bottom = 55.0
 
 [node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer"]
 margin_top = 275.0
@@ -630,6 +691,7 @@ text = "Ok"
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/AbastecimentoButton" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/SangriaButton" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_SangriaButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
+[connection signal="about_to_show" from="CanvasLayer/AbastecimentoWindowDialog" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoWindowDialog_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonCancelar" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_ButtonCancelar_pressed"]
 [connection signal="pressed" from="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonOk" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_ButtonOk_pressed"]
 
@@ -639,5 +701,9 @@ text = "Ok"
 [editable path="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4"]
 [editable path="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5"]
 [editable path="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6"]
-[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox"]
-[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4"]
+[editable path="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5"]

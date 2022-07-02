@@ -11,13 +11,13 @@ public class Main : Node
         aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
     }
 
-    public bool abastecer_moedas(int[] quantidade)
+    public bool abastecer_moedas(int[] array_quantidade)
     {
-        if (quantidade.Length == inventario_moedas.Length)
+        if (array_quantidade.Length == inventario_moedas.Length)
         {
-            for (int i = 0; i < quantidade.Length; i++)
+            for (int i = 0; i < array_quantidade.Length; i++)
             {
-                inventario_moedas[i] += quantidade[i];
+                inventario_moedas[i] += array_quantidade[i];
             }
             aplicacao.GetPainelMoedasControl().atualizar_quantia_exibida();
             return true;
@@ -25,20 +25,20 @@ public class Main : Node
         return false;
     }
 
-    public bool sangrar_moedas(int[] quantidade)
+    public bool sangrar_moedas(int[] array_quantidade)
     {
-        if (quantidade.Length == inventario_moedas.Length)
+        if (array_quantidade.Length == inventario_moedas.Length)
         {
-            for (int i = 0; i < quantidade.Length; i++)
+            for (int i = 0; i < array_quantidade.Length; i++)
             {
-                if (quantidade[i] > inventario_moedas[i])
+                if (array_quantidade[i] > inventario_moedas[i])
                 {
                     return false;
                 }
             }
-            for (int i = 0; i < quantidade.Length; i++)
+            for (int i = 0; i < array_quantidade.Length; i++)
             {
-                inventario_moedas[i] -= quantidade[i];
+                inventario_moedas[i] -= array_quantidade[i];
             }
             aplicacao.GetPainelMoedasControl().atualizar_quantia_exibida();
             return true;
@@ -49,5 +49,10 @@ public class Main : Node
     public int GetQuantiaValorMoeda(Tipo.VALOR_MOEDA tipo)
     {
         return inventario_moedas[((int)tipo)];
+    }
+
+    public int[] GetInventario()
+    {
+        return inventario_moedas;
     }
 }
