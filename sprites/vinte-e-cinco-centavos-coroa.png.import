@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/25centavos-coroa.png-8265c704186ae0629b996c3bbe78bc54.stex"
+path="res://.import/vinte-e-cinco-centavos-coroa.png-efb74876afd20385811d22c663bb6584.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/25centavos-coroa.png"
-dest_files=[ "res://.import/25centavos-coroa.png-8265c704186ae0629b996c3bbe78bc54.stex" ]
+source_file="res://sprites/vinte-e-cinco-centavos-coroa.png"
+dest_files=[ "res://.import/vinte-e-cinco-centavos-coroa.png-efb74876afd20385811d22c663bb6584.stex" ]
 
 [params]
 

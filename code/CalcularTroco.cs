@@ -7,6 +7,7 @@ public class CalcularTroco : Control
     private SpinBox ValorContaSpinBox;
     private SpinBox ValorPagoSpinBox;
     private Label TotalLabel;
+    private double resultado_troco;
 
 
     public override void _Ready()
@@ -19,7 +20,16 @@ public class CalcularTroco : Control
 
     public void _on_CalcularButton_pressed(){
         ResultadoWindowDialog.PopupCentered();
-        GD.Print(ValorPagoSpinBox.Value - ValorContaSpinBox.Value);
-        TotalLabel.Text = "Total: " + (ValorPagoSpinBox.Value - ValorContaSpinBox.Value);
+        resultado_troco = ValorPagoSpinBox.Value - ValorContaSpinBox.Value;
+        
+        if (resultado_troco > 0){
+            TotalLabel.Text = "Troco: R$" + (String.Format("{0,0:0.00}", resultado_troco));
+        }
+        else if (resultado_troco < 0){
+            TotalLabel.Text = "Pagamento insuficiente, faltam R$: " + (String.Format("{0,0:0.00}", -resultado_troco));
+        }
+        else {
+            TotalLabel.Text = "Valor exato.";
+        }
     }
 }

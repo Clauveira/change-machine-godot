@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1real-cara.png-9f7a4f5f24cf5fa5e952230c49ee1db7.stex"
+path="res://.import/um-centavo-cara.png-4fed74ef00cf6fdfe591f845f637b1c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/1real-cara.png"
-dest_files=[ "res://.import/1real-cara.png-9f7a4f5f24cf5fa5e952230c49ee1db7.stex" ]
+source_file="res://sprites/um-centavo-cara.png"
+dest_files=[ "res://.import/um-centavo-cara.png-4fed74ef00cf6fdfe591f845f637b1c1.stex" ]
 
 [params]
 

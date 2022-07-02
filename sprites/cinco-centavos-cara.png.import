@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/25centavos-cara.png-ae9e165f5a75bf6a1ba41ee1cf05a180.stex"
+path="res://.import/cinco-centavos-cara.png-f9dff5c018d5a35e9c93966e3c9ed67b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/25centavos-cara.png"
-dest_files=[ "res://.import/25centavos-cara.png-ae9e165f5a75bf6a1ba41ee1cf05a180.stex" ]
+source_file="res://sprites/cinco-centavos-cara.png"
+dest_files=[ "res://.import/cinco-centavos-cara.png-f9dff5c018d5a35e9c93966e3c9ed67b.stex" ]
 
 [params]
 

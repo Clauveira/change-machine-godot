@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/10centavos-coroa.png-fbbeb62d17486fe3ba20e7727f213663.stex"
+path="res://.import/dez-centavos-coroa.png-460c9081a4d1f29de52986e939144d8f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/10centavos-coroa.png"
-dest_files=[ "res://.import/10centavos-coroa.png-fbbeb62d17486fe3ba20e7727f213663.stex" ]
+source_file="res://sprites/dez-centavos-coroa.png"
+dest_files=[ "res://.import/dez-centavos-coroa.png-460c9081a4d1f29de52986e939144d8f.stex" ]
 
 [params]
 
