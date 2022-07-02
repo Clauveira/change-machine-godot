@@ -28,19 +28,45 @@ public class Moeda : Control
             COROA,
     }
 
-    [Export]
-    public TIPO_MOEDA tipo_moeda = TIPO_MOEDA.UM_REAL;
-    [Export]
-    public LADO_MOEDA lado = LADO_MOEDA.COROA;
+    
     [Export(PropertyHint.Range, "0,100,1,or_greater")]
     public int quantia = 0;
+    
+    private TIPO_MOEDA tipo_moeda = TIPO_MOEDA.UM_REAL;
+    [Export]
+    public TIPO_MOEDA TipoMoeda {
+        get => tipo_moeda;
+        set => SetTipoMoeda(value);
+    }
+    private void SetTipoMoeda(TIPO_MOEDA new_tipo_moeda)
+    {
+        tipo_moeda = new_tipo_moeda;
+        atualiza_textura();
+    }
+
+    private LADO_MOEDA lado_moeda = LADO_MOEDA.COROA;
+    [Export]
+    public LADO_MOEDA LadoMoeda{
+        get => lado_moeda;
+        set => SetLadoMoeda(value);
+    }
+    private void SetLadoMoeda(LADO_MOEDA new_lado_moeda)
+    {
+        lado_moeda = new_lado_moeda;
+        atualiza_textura();
+    }
 
     public override void _Ready()
     {
         GetNode<Label>("PanelContainer/VBoxContainer/LabelQuantia").Text = quantia.ToString();
+        atualiza_textura();
         
+    }
+
+    public void atualiza_textura(){
         GetNode<TextureRect>("PanelContainer/VBoxContainer/MoedaTexture").Texture = ResourceLoader.Load(
             "res://sprites/" + tipo_moeda.ToString().ToLower().Replace("_", "-")
-            + "-" + lado.ToString().ToLower() + ".png") as Texture;
+            + "-" + lado_moeda.ToString().ToLower() + ".png") as Texture;
+
     }
 }
