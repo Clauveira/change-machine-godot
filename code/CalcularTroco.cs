@@ -18,22 +18,24 @@ public class CalcularTroco : Control
         ValorPagoSpinBox = GetNode<SpinBox>("VBoxContainer/PagoContainer/ValorPago");
         TotalLabel = GetNode<Label>("/root/Main/CanvasLayer/ResultadoWindowDialog/VBoxContainer/TotalControl/TotalLabel");
         OkButton = GetNode<Button>("/root/Main/CanvasLayer/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonOk");
-        
     }
 
-    public void _on_CalcularButton_pressed(){
+    public void _on_CalcularButton_pressed()
+    {
         ResultadoWindowDialog.PopupCentered();
         resultado_troco = ValorPagoSpinBox.Value - ValorContaSpinBox.Value;
-        
-        if (resultado_troco > 0){
+        if (resultado_troco > 0)
+        {
             TotalLabel.Text = "Troco: R$" + (String.Format("{0,0:0.00}", resultado_troco));
             OkButton.Icon = null;
         }
-        else if (resultado_troco < 0){
+        else if (resultado_troco < 0)
+        {
             TotalLabel.Text = "Pagamento insuficiente, faltam R$: " + (String.Format("{0,0:0.00}", -resultado_troco));
             OkButton.Icon = ResourceLoader.Load("res://sprites/icons/alert.png") as Texture;
         }
-        else {
+        else
+        {
             TotalLabel.Text = "Valor exato.";
             OkButton.Icon = null;
         }

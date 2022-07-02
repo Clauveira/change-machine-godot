@@ -14,6 +14,10 @@ config/name="TrocoPro"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Aplicacao="*res://code/autoload/Aplicacao.cs"
+
 [display]
 
 window/size/width=480
