@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://code/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/header.tscn" type="PackedScene" id=2]
@@ -11,20 +11,129 @@
 [ext_resource path="res://code/AbastecimentoSangria.cs" type="Script" id=9]
 [ext_resource path="res://code/PainelMoedas.cs" type="Script" id=10]
 [ext_resource path="res://scenes/quantia_da_moeda_abastecimento.tscn" type="PackedScene" id=11]
+[ext_resource path="res://theme/MinimalUI/MinimalUI.tres" type="Theme" id=12]
+[ext_resource path="res://code/ResultadoControl.cs" type="Script" id=13]
+[ext_resource path="res://theme/theme_default.tres" type="Theme" id=14]
+[ext_resource path="res://theme/metal_pixel/MetalPixel.tres" type="Theme" id=15]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.215686, 0.215686, 0.215686, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_left = 6.0
-expand_margin_right = 6.0
-expand_margin_top = 6.0
+[sub_resource type="Animation" id=1]
+resource_name = "Dark"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/MainControl:theme")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ResultadoWindowDialog:theme")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/AbastecimentoWindowDialog:theme")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/MainControl:theme")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ResultadoWindowDialog:theme")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/AbastecimentoWindowDialog:theme")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "MetalPixel"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/MainControl:theme")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ResultadoWindowDialog:theme")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/AbastecimentoWindowDialog:theme")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -45,6 +154,7 @@ __meta__ = {
 [node name="MainControl" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 14 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl"]
 anchor_right = 1.0
@@ -65,10 +175,9 @@ margin_bottom = 800.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MainControl/VBoxContainer/Body"]
+[node name="ColorRect" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.843137, 0.843137, 0.843137, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -98,10 +207,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 10 )
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+[node name="ColorRect" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.345098, 0.345098, 0.345098, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -118,34 +227,34 @@ columns = 3
 [node name="Moeda1" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 157.0
-margin_bottom = 185.0
+margin_right = 152.0
+margin_bottom = 176.0
 TipoMoeda = 0
 EhExibeQuantia = true
 
 [node name="Moeda2" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 161.0
-margin_right = 318.0
-margin_bottom = 185.0
+margin_left = 164.0
+margin_right = 316.0
+margin_bottom = 176.0
 TipoMoeda = 1
 EhExibeQuantia = true
 
 [node name="Moeda3" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 322.0
-margin_right = 479.0
-margin_bottom = 185.0
+margin_left = 328.0
+margin_right = 480.0
+margin_bottom = 176.0
 TipoMoeda = 2
 EhExibeQuantia = true
 
 [node name="Moeda4" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 189.0
-margin_right = 157.0
+margin_top = 198.0
+margin_right = 152.0
 margin_bottom = 374.0
 TipoMoeda = 3
 EhExibeQuantia = true
@@ -153,9 +262,9 @@ EhExibeQuantia = true
 [node name="Moeda5" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 161.0
-margin_top = 189.0
-margin_right = 318.0
+margin_left = 164.0
+margin_top = 198.0
+margin_right = 316.0
 margin_bottom = 374.0
 TipoMoeda = 4
 EhExibeQuantia = true
@@ -163,9 +272,9 @@ EhExibeQuantia = true
 [node name="Moeda6" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 322.0
-margin_top = 189.0
-margin_right = 479.0
+margin_left = 328.0
+margin_top = 198.0
+margin_right = 480.0
 margin_bottom = 374.0
 EhExibeQuantia = true
 
@@ -188,11 +297,11 @@ custom_constants/margin_left = 8
 custom_constants/margin_bottom = 2
 
 [node name="ColorRect" type="PanelContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer"]
+visible = false
 margin_left = 8.0
 margin_top = 6.0
 margin_right = 472.0
 margin_bottom = 374.0
-custom_styles/panel = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer"]
 margin_left = 8.0
@@ -263,12 +372,12 @@ alignment = 1
 
 [node name="LabelValorConta" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
 margin_right = 464.0
-margin_bottom = 14.0
+margin_bottom = 35.0
 text = "Valor da conta:"
 clip_text = true
 
 [node name="ValorConta" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
-margin_top = 18.0
+margin_top = 39.0
 margin_right = 464.0
 margin_bottom = 86.0
 size_flags_horizontal = 3
@@ -287,12 +396,12 @@ alignment = 1
 
 [node name="LabelValorPago" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
 margin_right = 464.0
-margin_bottom = 14.0
+margin_bottom = 35.0
 text = "Valor pago:"
 clip_text = true
 
 [node name="ValorPago" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
-margin_top = 18.0
+margin_top = 39.0
 margin_right = 464.0
 margin_bottom = 87.0
 size_flags_horizontal = 3
@@ -326,12 +435,14 @@ margin_top = 31.0
 margin_right = 395.0
 margin_bottom = -338.0
 rect_min_size = Vector2( 380, 380 )
+theme = ExtResource( 14 )
 window_title = "Resultado"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ResultadoWindowDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 380, 380 )
+script = ExtResource( 13 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer"]
 margin_right = 380.0
@@ -352,97 +463,98 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/hseparation = 26
 columns = 2
 
 [node name="QuantiaDaMoedaHBox" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
-margin_right = 158.0
-margin_bottom = 105.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="Moeda" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox" index="0"]
-margin_right = 119.0
-margin_bottom = 105.0
+margin_right = 108.0
+margin_bottom = 93.0
 TipoMoeda = 0
 
 [node name="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox" index="1"]
-margin_left = 123.0
-margin_right = 158.0
-margin_bottom = 105.0
+margin_left = 112.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="QuantiaDaMoedaHBox2" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
-margin_left = 162.0
+margin_left = 173.0
 margin_right = 320.0
-margin_bottom = 105.0
+margin_bottom = 93.0
 
 [node name="Moeda" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2" index="0"]
-margin_right = 119.0
-margin_bottom = 105.0
+margin_right = 108.0
+margin_bottom = 93.0
 TipoMoeda = 1
 
 [node name="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox2" index="1"]
-margin_left = 123.0
-margin_right = 158.0
-margin_bottom = 105.0
+margin_left = 112.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="QuantiaDaMoedaHBox3" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
-margin_top = 109.0
-margin_right = 158.0
-margin_bottom = 214.0
+margin_top = 115.0
+margin_right = 147.0
+margin_bottom = 208.0
 
 [node name="Moeda" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox3" index="0"]
-margin_right = 119.0
-margin_bottom = 105.0
+margin_right = 108.0
+margin_bottom = 93.0
 TipoMoeda = 2
 
 [node name="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox3" index="1"]
-margin_left = 123.0
-margin_right = 158.0
-margin_bottom = 105.0
+margin_left = 112.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="QuantiaDaMoedaHBox4" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
-margin_left = 162.0
-margin_top = 109.0
+margin_left = 173.0
+margin_top = 115.0
 margin_right = 320.0
-margin_bottom = 214.0
+margin_bottom = 208.0
 
 [node name="Moeda" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4" index="0"]
-margin_right = 119.0
-margin_bottom = 105.0
+margin_right = 108.0
+margin_bottom = 93.0
 TipoMoeda = 3
 
 [node name="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox4" index="1"]
-margin_left = 123.0
-margin_right = 158.0
-margin_bottom = 105.0
+margin_left = 112.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="QuantiaDaMoedaHBox5" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
-margin_top = 218.0
-margin_right = 158.0
+margin_top = 230.0
+margin_right = 147.0
 margin_bottom = 323.0
 
 [node name="Moeda" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5" index="0"]
-margin_right = 119.0
-margin_bottom = 105.0
+margin_right = 108.0
+margin_bottom = 93.0
 
 [node name="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox5" index="1"]
-margin_left = 123.0
-margin_right = 158.0
-margin_bottom = 105.0
+margin_left = 112.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="QuantiaDaMoedaHBox6" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 4 )]
-margin_left = 162.0
-margin_top = 218.0
+margin_left = 173.0
+margin_top = 230.0
 margin_right = 320.0
 margin_bottom = 323.0
 
 [node name="Moeda" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6" index="0"]
-margin_right = 119.0
-margin_bottom = 105.0
+margin_right = 108.0
+margin_bottom = 93.0
 TipoMoeda = 5
 
 [node name="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDaMoedaHBox6" index="1"]
-margin_left = 123.0
-margin_right = 158.0
-margin_bottom = 105.0
+margin_left = 112.0
+margin_right = 147.0
+margin_bottom = 93.0
 
 [node name="TotalControl" type="Control" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer"]
 margin_top = 347.0
@@ -503,6 +615,7 @@ margin_top = 29.0
 margin_right = 811.0
 margin_bottom = -446.0
 rect_min_size = Vector2( 380, 300 )
+theme = ExtResource( 14 )
 window_title = "Abastecimento/Sangria"
 
 [node name="AbastecimentoSangriaControl" type="Control" parent="CanvasLayer/AbastecimentoWindowDialog"]
@@ -534,127 +647,129 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 1
+custom_constants/hseparation = 8
 columns = 2
 
 [node name="QuantiaDeMoedasAlterar0" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
-margin_right = 158.0
-margin_bottom = 77.0
+margin_right = 156.0
+margin_bottom = 79.0
 
 [node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0/Panel/MarginContainer" index="0"]
-margin_right = 154.0
-margin_bottom = 73.0
+margin_right = 152.0
+margin_bottom = 75.0
 
 [node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
-margin_bottom = 69.0
+margin_bottom = 71.0
 TipoMoeda = 0
 
 [node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar0/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
-margin_top = 13.0
-margin_right = 150.0
-margin_bottom = 55.0
+margin_top = 14.0
+margin_right = 148.0
+margin_bottom = 56.0
 
 [node name="QuantiaDeMoedasAlterar1" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
-margin_left = 162.0
+margin_left = 164.0
 margin_right = 320.0
-margin_bottom = 77.0
+margin_bottom = 79.0
 
 [node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1/Panel/MarginContainer" index="0"]
-margin_right = 154.0
-margin_bottom = 73.0
+margin_right = 152.0
+margin_bottom = 75.0
 
 [node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
-margin_bottom = 69.0
+margin_bottom = 71.0
 TipoMoeda = 1
 
 [node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar1/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
-margin_top = 13.0
-margin_right = 150.0
-margin_bottom = 55.0
+margin_top = 14.0
+margin_right = 148.0
+margin_bottom = 56.0
 
 [node name="QuantiaDeMoedasAlterar2" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
-margin_top = 81.0
-margin_right = 158.0
-margin_bottom = 158.0
+margin_top = 80.0
+margin_right = 156.0
+margin_bottom = 159.0
 
 [node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2/Panel/MarginContainer" index="0"]
-margin_right = 154.0
-margin_bottom = 73.0
+margin_right = 152.0
+margin_bottom = 75.0
 
 [node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
-margin_bottom = 69.0
+margin_bottom = 71.0
 TipoMoeda = 2
 
 [node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar2/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
-margin_top = 13.0
-margin_right = 150.0
-margin_bottom = 55.0
+margin_top = 14.0
+margin_right = 148.0
+margin_bottom = 56.0
 
 [node name="QuantiaDeMoedasAlterar3" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
-margin_left = 162.0
-margin_top = 81.0
+margin_left = 164.0
+margin_top = 80.0
 margin_right = 320.0
-margin_bottom = 158.0
+margin_bottom = 159.0
 
 [node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3/Panel/MarginContainer" index="0"]
-margin_right = 154.0
-margin_bottom = 73.0
+margin_right = 152.0
+margin_bottom = 75.0
 
 [node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
-margin_bottom = 69.0
+margin_bottom = 71.0
 TipoMoeda = 3
 
 [node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar3/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
-margin_top = 13.0
-margin_right = 150.0
-margin_bottom = 55.0
+margin_top = 14.0
+margin_right = 148.0
+margin_bottom = 56.0
 
 [node name="QuantiaDeMoedasAlterar4" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
-margin_top = 162.0
-margin_right = 158.0
+margin_top = 160.0
+margin_right = 156.0
 margin_bottom = 239.0
 
 [node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4/Panel/MarginContainer" index="0"]
-margin_right = 154.0
-margin_bottom = 73.0
+margin_right = 152.0
+margin_bottom = 75.0
 
 [node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
-margin_bottom = 69.0
+margin_bottom = 71.0
 TipoMoeda = 4
 
 [node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar4/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
-margin_top = 13.0
-margin_right = 150.0
-margin_bottom = 55.0
+margin_top = 14.0
+margin_right = 148.0
+margin_bottom = 56.0
 
 [node name="QuantiaDeMoedasAlterar5" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas" instance=ExtResource( 11 )]
-margin_left = 162.0
-margin_top = 162.0
+margin_left = 164.0
+margin_top = 160.0
 margin_right = 320.0
 margin_bottom = 239.0
 
 [node name="HBoxContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5/Panel/MarginContainer" index="0"]
-margin_right = 154.0
-margin_bottom = 73.0
+margin_right = 152.0
+margin_bottom = 75.0
 
 [node name="Moeda" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5/Panel/MarginContainer/HBoxContainer" index="0"]
 margin_right = 72.0
-margin_bottom = 69.0
+margin_bottom = 71.0
 
 [node name="SpinBox" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar5/Panel/MarginContainer/HBoxContainer" index="1"]
 margin_left = 76.0
-margin_top = 13.0
-margin_right = 150.0
-margin_bottom = 55.0
+margin_top = 14.0
+margin_right = 148.0
+margin_bottom = 56.0
 
 [node name="ButtonsMarginContainer" type="MarginContainer" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer"]
 margin_top = 275.0
@@ -688,9 +803,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Ok"
 
+[node name="AnimTheme" type="AnimationPlayer" parent="."]
+anims/Dark = SubResource( 1 )
+anims/Default = SubResource( 2 )
+anims/MetalPixel = SubResource( 3 )
+
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/AbastecimentoButton" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/SangriaButton" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_SangriaButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonCancelar" to="CanvasLayer/ResultadoWindowDialog/VBoxContainer" method="_on_ButtonCancelar_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonOk" to="CanvasLayer/ResultadoWindowDialog/VBoxContainer" method="_on_ButtonOk_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/AbastecimentoWindowDialog" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoWindowDialog_about_to_show"]
 [connection signal="pressed" from="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonCancelar" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_ButtonCancelar_pressed"]
 [connection signal="pressed" from="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonOk" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_ButtonOk_pressed"]

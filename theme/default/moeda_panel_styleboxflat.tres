@@ -1,0 +1,15 @@
+[gd_resource type="StyleBoxFlat" format=2]
+
+[resource]
+resource_name = "moeda_panel"
+bg_color = Color( 0.933333, 0.933333, 0.933333, 1 )
+border_width_left = 1
+border_width_bottom = 1
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color( 0, 0, 0, 0.196078 )
+shadow_size = 3
+shadow_offset = Vector2( -1, 2 )
+anti_aliasing_size = 1.1

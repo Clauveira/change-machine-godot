@@ -10,7 +10,18 @@ public class Main : Node
     {
         aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
     }
-
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (@event.IsActionPressed("F1"))
+        {
+            GetNode<AnimationPlayer>("AnimTheme").Play("Default");
+        }
+        if (@event.IsActionPressed("F2"))
+        {
+            GetNode<AnimationPlayer>("AnimTheme").Play("Dark");
+        }
+    }
     public bool abastecer_moedas(int[] array_quantidade)
     {
         if (array_quantidade.Length == inventario_moedas.Length)
