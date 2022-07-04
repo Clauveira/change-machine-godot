@@ -108,14 +108,11 @@ axis_stretch_vertical = 1
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 99, 66, 9, 11 )
+region = Rect2( 396, 264, 36, 44 )
 
 [sub_resource type="StyleBoxTexture" id=20]
 texture = SubResource( 19 )
-region_rect = Rect2( 97, 39, 14, 6 )
-margin_top = 2.0
-margin_bottom = 6.0
-axis_stretch_horizontal = 1
+region_rect = Rect2( 388, 156, 56, 24 )
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id=21]
@@ -148,35 +145,34 @@ atlas = ExtResource( 1 )
 [sub_resource type="StyleBoxTexture" id=26]
 texture = SubResource( 25 )
 region_rect = Rect2( 324, 192, 56, 64 )
-margin_left = 6.0
-margin_right = 4.0
-margin_top = 3.0
-margin_bottom = 2.0
+margin_left = 24.0
+margin_right = 16.0
+margin_top = 12.0
+margin_bottom = 8.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id=27]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 112, 96 )
+region = Rect2( 0, 0, 448, 384 )
 
 [sub_resource type="StyleBoxTexture" id=28]
 texture = SubResource( 27 )
-region_rect = Rect2( 83, 19, 26, 10 )
-margin_left = 4.75495
-margin_right = 3.72685
-margin_top = 4.11239
-margin_bottom = 3.85537
-
-[sub_resource type="StyleBoxTexture" id=29]
-content_margin_left = 6.0
-content_margin_top = 5.0
-texture = SubResource( 27 )
-region_rect = Rect2( 332, 12, 104, 40 )
+region_rect = Rect2( 332, 76, 104, 40 )
 margin_left = 20.0
 margin_right = 16.0
 margin_top = 16.0
 margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = SubResource( 27 )
+region_rect = Rect2( 332, 12, 104, 40 )
+margin_left = 16.0
+margin_right = 16.0
+margin_top = 16.0
+margin_bottom = 16.0
+expand_margin_right = 6.0
 
 [sub_resource type="StyleBoxTexture" id=30]
 content_margin_left = 7.0
@@ -298,12 +294,7 @@ atlas = ExtResource( 1 )
 
 [sub_resource type="StyleBoxTexture" id=43]
 texture = SubResource( 42 )
-region_rect = Rect2( 0, 0, 1, 1 )
-margin_left = 1.0
-margin_right = 3.0
-margin_top = 4.0
-margin_bottom = 2.0
-axis_stretch_horizontal = 1
+region_rect = Rect2( 403.475, 196, 25.5247, 56.3764 )
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id=44]
@@ -341,6 +332,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="DynamicFont" id=47]
+size = 26
 font_data = ExtResource( 3 )
 
 [resource]
@@ -421,7 +413,7 @@ LineEdit/colors/font_color = Color( 0.811765, 0.294118, 0.215686, 1 )
 LineEdit/colors/font_color_selected = Color( 0.811765, 0.294118, 0.215686, 1 )
 LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
 LineEdit/colors/selection_color = Color( 0.105882, 0.12549, 0.14902, 1 )
-LineEdit/constants/minimum_spaces = 12
+LineEdit/constants/minimum_spaces = 10
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
 LineEdit/styles/focus = SubResource( 28 )

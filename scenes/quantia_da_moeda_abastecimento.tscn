@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/moeda.tscn" type="PackedScene" id=1]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0.431373 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [node name="QuantiaDeMoedasAlterar" type="Control"]
-margin_right = 150.0
-margin_bottom = 73.0
+anchor_right = 0.312
+anchor_bottom = 0.091
+margin_right = 0.23999
+margin_bottom = 0.199997
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 80, 0 )
@@ -14,33 +23,36 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/margin_right = 4
-custom_constants/margin_top = 4
+custom_constants/margin_top = 0
 custom_constants/margin_left = 4
-custom_constants/margin_bottom = 4
+custom_constants/margin_bottom = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
 margin_left = 4.0
-margin_top = 4.0
 margin_right = 146.0
-margin_bottom = 69.0
+margin_bottom = 73.0
 
 [node name="Moeda" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 64.0
-margin_bottom = 65.0
+margin_bottom = 73.0
 size_flags_vertical = 7
 
 [node name="SpinBox" type="SpinBox" parent="Panel/MarginContainer/HBoxContainer"]
 margin_left = 68.0
-margin_top = 11.0
+margin_top = 15.0
 margin_right = 142.0
-margin_bottom = 53.0
+margin_bottom = 57.0
 rect_min_size = Vector2( 0, 42 )
 size_flags_horizontal = 3
 size_flags_vertical = 6

@@ -15,11 +15,15 @@ public class AbastecimentoSangria : Control
     {
         eh_sangria = false;
         aplicacao.GetAbastecimentoSangriaWindowDialog().PopupCentered();
+        aplicacao.GetAbastecimentoSangriaWindowDialog().WindowTitle = "Abastecimento";
+        AnalizarOcultarMoedas();
     }
     public void _on_SangriaButton_pressed()
     {
         eh_sangria = true;
         aplicacao.GetAbastecimentoSangriaWindowDialog().PopupCentered();
+        aplicacao.GetAbastecimentoSangriaWindowDialog().WindowTitle = "Sangria";
+        AnalizarOcultarMoedas();
     }
 
     public void _on_ButtonOk_pressed()
@@ -79,5 +83,24 @@ public class AbastecimentoSangria : Control
             GetNode<SpinBox>("VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar"
             + i + "/Panel/MarginContainer/HBoxContainer/SpinBox").MaxValue = novo_valor_maximo;
         }
+    }
+
+    public void AnalizarOcultarMoedas()
+    {
+        bool new_visible = true;
+        bool eh_sem_moedas = true;
+        for (int i = 0; i < aplicacao.GetMainNode().GetInventario().Length; i++)
+        {
+            if (eh_sangria)
+            {
+                new_visible = aplicacao.GetMainNode().GetInventario()[i] > 0;
+            }
+            GetNode<Control>("VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar" + i).Visible = new_visible;
+            if (eh_sem_moedas && new_visible == true)
+            {
+                eh_sem_moedas = false;
+            }
+        }
+        GetNode<Label>("VBoxContainer/MarginContainer/SemMoedas").Visible = eh_sem_moedas;
     }
 }

@@ -19,5 +19,6 @@ public class ResultadoControl : VBoxContainer
     {
         //TODO: Remover as moedas do inventário
         aplicacao.GetResultadoWindowDialog().Hide();
+        
     }
 }

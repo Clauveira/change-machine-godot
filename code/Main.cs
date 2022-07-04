@@ -5,10 +5,12 @@ public class Main : Node
 {
     private int[] inventario_moedas = new int[6];
     private Aplicacao aplicacao;
+    public efeito_click efeito_click;
 
     public override void _Ready()
     {
         aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
+        efeito_click = GetNode<efeito_click>("efeito_click");
     }
     public override void _Input(InputEvent @event)
     {
