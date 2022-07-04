@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1centavo-cara.png-207b3261cf9bb15f715d928131990259.stex"
+path="res://.import/menu.png-1dad793f00e508f5528a5a7d1fb165fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/1centavo-cara.png"
-dest_files=[ "res://.import/1centavo-cara.png-207b3261cf9bb15f715d928131990259.stex" ]
+source_file="res://sprites/icons/menu.png"
+dest_files=[ "res://.import/menu.png-1dad793f00e508f5528a5a7d1fb165fa.stex" ]
 
 [params]
 

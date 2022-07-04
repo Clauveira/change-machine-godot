@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/50centavos-cara.png-d86a07696ac92a629abb39d878d3c903.stex"
+path="res://.import/circle-plus.png-64e53e6a9fc6f247144e3879f3e0c4fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/50centavos-cara.png"
-dest_files=[ "res://.import/50centavos-cara.png-d86a07696ac92a629abb39d878d3c903.stex" ]
+source_file="res://sprites/icons/circle-plus.png"
+dest_files=[ "res://.import/circle-plus.png-64e53e6a9fc6f247144e3879f3e0c4fd.stex" ]
 
 [params]
 

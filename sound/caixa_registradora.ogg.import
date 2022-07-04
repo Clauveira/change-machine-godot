@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/caixa_registradora.ogg-19e35ddb414764c3beafc33e621f7862.oggstr"
+
+[deps]
+
+source_file="res://sound/caixa_registradora.ogg"
+dest_files=[ "res://.import/caixa_registradora.ogg-19e35ddb414764c3beafc33e621f7862.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

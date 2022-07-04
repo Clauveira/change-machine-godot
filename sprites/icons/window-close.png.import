@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1real-cara.png-9f7a4f5f24cf5fa5e952230c49ee1db7.stex"
+path="res://.import/window-close.png-217189d87327b8704cf4e08bc0055b95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/1real-cara.png"
-dest_files=[ "res://.import/1real-cara.png-9f7a4f5f24cf5fa5e952230c49ee1db7.stex" ]
+source_file="res://sprites/icons/window-close.png"
+dest_files=[ "res://.import/window-close.png-217189d87327b8704cf4e08bc0055b95.stex" ]
 
 [params]
 
