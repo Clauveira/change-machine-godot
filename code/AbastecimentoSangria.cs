@@ -3,7 +3,7 @@ using System;
 
 public class AbastecimentoSangria : Control
 {
-    private bool eh_sangria = false;
+    private bool ehSangria = false;
     private Aplicacao aplicacao;
 
     public override void _Ready()
@@ -13,14 +13,14 @@ public class AbastecimentoSangria : Control
 
     public void _on_AbastecimentoButton_pressed()
     {
-        eh_sangria = false;
+        ehSangria = false;
         aplicacao.GetAbastecimentoSangriaWindowDialog().PopupCentered();
         aplicacao.GetAbastecimentoSangriaWindowDialog().WindowTitle = "Abastecimento";
         AnalizarOcultarMoedas();
     }
     public void _on_SangriaButton_pressed()
     {
-        eh_sangria = true;
+        ehSangria = true;
         aplicacao.GetAbastecimentoSangriaWindowDialog().PopupCentered();
         aplicacao.GetAbastecimentoSangriaWindowDialog().WindowTitle = "Sangria";
         AnalizarOcultarMoedas();
@@ -34,13 +34,13 @@ public class AbastecimentoSangria : Control
             array_quantidade_alterar[i] = GetValorAlterarNaPosicao(i);
         }
 
-        if (eh_sangria)
+        if (ehSangria)
         {
-            aplicacao.GetMainNode().sangrar_moedas(array_quantidade_alterar);
+            aplicacao.GetMainNode().RetirarMoedas(array_quantidade_alterar);
         }
         else
         {
-            aplicacao.GetMainNode().abastecer_moedas(array_quantidade_alterar);
+            aplicacao.GetMainNode().AbastecerMoedas(array_quantidade_alterar);
         }
         aplicacao.GetAbastecimentoSangriaWindowDialog().Hide();
     }
@@ -60,7 +60,7 @@ public class AbastecimentoSangria : Control
     public void _on_AbastecimentoWindowDialog_about_to_show()
     {
         LimparCampos();
-        RescalonarValores(eh_sangria);
+        RescalonarValores(ehSangria);
     }
 
     public void LimparCampos()
@@ -73,34 +73,34 @@ public class AbastecimentoSangria : Control
     }
     public void RescalonarValores(bool eh_sangria)
     {
-        int novo_valor_maximo = 999;
+        int novoValorMaximo = 999;
         for (int i = 0; i < aplicacao.GetMainNode().GetInventario().Length; i++)
         {
             if (eh_sangria)
             {
-                novo_valor_maximo = aplicacao.GetMainNode().GetInventario()[i];
+                novoValorMaximo = aplicacao.GetMainNode().GetInventario()[i];
             }
             GetNode<SpinBox>("VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar"
-            + i + "/Panel/MarginContainer/HBoxContainer/SpinBox").MaxValue = novo_valor_maximo;
+            + i + "/Panel/MarginContainer/HBoxContainer/SpinBox").MaxValue = novoValorMaximo;
         }
     }
 
     public void AnalizarOcultarMoedas()
     {
-        bool new_visible = true;
-        bool eh_sem_moedas = true;
+        bool newVisible = true;
+        bool ehSemMoedas = true;
         for (int i = 0; i < aplicacao.GetMainNode().GetInventario().Length; i++)
         {
-            if (eh_sangria)
+            if (ehSangria)
             {
-                new_visible = aplicacao.GetMainNode().GetInventario()[i] > 0;
+                newVisible = aplicacao.GetMainNode().GetInventario()[i] > 0;
             }
-            GetNode<Control>("VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar" + i).Visible = new_visible;
-            if (eh_sem_moedas && new_visible == true)
+            GetNode<Control>("VBoxContainer/MarginContainer/ListaQuantiaMoedas/QuantiaDeMoedasAlterar" + i).Visible = newVisible;
+            if (ehSemMoedas && newVisible == true)
             {
-                eh_sem_moedas = false;
+                ehSemMoedas = false;
             }
         }
-        GetNode<Label>("VBoxContainer/MarginContainer/SemMoedas").Visible = eh_sem_moedas;
+        GetNode<Label>("VBoxContainer/MarginContainer/SemMoedas").Visible = ehSemMoedas;
     }
 }

@@ -3,14 +3,14 @@ using System;
 
 public class Main : Node
 {
-    private int[] inventario_moedas = new int[6];
+    private int[] inventarioMoedas = new int[6];
+    public EfeitoClick efeitoClick;
     private Aplicacao aplicacao;
-    public efeito_click efeito_click;
 
     public override void _Ready()
     {
         aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
-        efeito_click = GetNode<efeito_click>("efeito_click");
+        efeitoClick = GetNode<EfeitoClick>("efeito_click");
     }
     public override void _Input(InputEvent @event)
     {
@@ -24,13 +24,13 @@ public class Main : Node
             GetNode<AnimationPlayer>("AnimTheme").Play("Dark");
         }
     }
-    public bool abastecer_moedas(int[] array_quantidade)
+    public bool AbastecerMoedas(int[] arrayQuantidade)
     {
-        if (array_quantidade.Length == inventario_moedas.Length)
+        if (arrayQuantidade.Length == inventarioMoedas.Length)
         {
-            for (int i = 0; i < array_quantidade.Length; i++)
+            for (int i = 0; i < arrayQuantidade.Length; i++)
             {
-                inventario_moedas[i] += array_quantidade[i];
+                inventarioMoedas[i] += arrayQuantidade[i];
             }
             aplicacao.GetPainelMoedasControl().atualizar_quantia_exibida();
             return true;
@@ -38,20 +38,20 @@ public class Main : Node
         return false;
     }
 
-    public bool sangrar_moedas(int[] array_quantidade)
+    public bool RetirarMoedas(int[] arrayQuantidade)
     {
-        if (array_quantidade.Length == inventario_moedas.Length)
+        if (arrayQuantidade.Length == inventarioMoedas.Length)
         {
-            for (int i = 0; i < array_quantidade.Length; i++)
+            for (int i = 0; i < arrayQuantidade.Length; i++)
             {
-                if (array_quantidade[i] > inventario_moedas[i])
+                if (arrayQuantidade[i] > inventarioMoedas[i])
                 {
                     return false;
                 }
             }
-            for (int i = 0; i < array_quantidade.Length; i++)
+            for (int i = 0; i < arrayQuantidade.Length; i++)
             {
-                inventario_moedas[i] -= array_quantidade[i];
+                inventarioMoedas[i] -= arrayQuantidade[i];
             }
             aplicacao.GetPainelMoedasControl().atualizar_quantia_exibida();
             return true;
@@ -61,11 +61,11 @@ public class Main : Node
 
     public int GetQuantiaValorMoeda(Tipo.VALOR_MOEDA tipo)
     {
-        return inventario_moedas[((int)tipo)];
+        return inventarioMoedas[((int)tipo)];
     }
 
     public int[] GetInventario()
     {
-        return inventario_moedas;
+        return inventarioMoedas;
     }
 }

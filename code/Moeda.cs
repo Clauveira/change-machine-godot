@@ -8,9 +8,9 @@ public class Moeda : Control
     [Export(PropertyHint.Range, "0,100,1,or_greater")]
     public int quantia = 0;
 
-    private NodePath label_quantia_node_path = "PanelContainer/Container/MoedaTexture/LabelQuantia";
+    private NodePath labelQuantiaNodePath = "PanelContainer/Container/MoedaTexture/LabelQuantia";
 
-    private NodePath texture_node_path = "PanelContainer/Container/MoedaTexture";
+    private NodePath textureNodePath = "PanelContainer/Container/MoedaTexture";
 
 
     private Tipo.VALOR_MOEDA tipo_moeda = Tipo.VALOR_MOEDA.UM_REAL;
@@ -49,7 +49,7 @@ public class Moeda : Control
     private void SetEhExibeQuantia(bool new_eh_exibe_quantia)
     {
         eh_exibe_quantia = new_eh_exibe_quantia;
-        GetNode<Label>(label_quantia_node_path).Visible = eh_exibe_quantia;
+        GetNode<Label>(labelQuantiaNodePath).Visible = eh_exibe_quantia;
         GetNode<Panel>("PanelContainer/Container/MoedaTexture/Panel").Visible = eh_exibe_quantia;
     }
 
@@ -66,7 +66,7 @@ public class Moeda : Control
 
     public void AtualizaTextura()
     {
-        GetNode<TextureRect>(texture_node_path).Texture = ResourceLoader.Load(
+        GetNode<TextureRect>(textureNodePath).Texture = ResourceLoader.Load(
             "res://sprites/" + tipo_moeda.ToString().ToLower().Replace("_", "-")
             + "-" + lado_moeda.ToString().ToLower() + ".png") as Texture;
     }
@@ -74,17 +74,17 @@ public class Moeda : Control
     public void AtualizaQuantia()
     {
         quantia = aplicacao.GetMainNode().GetQuantiaValorMoeda(tipo_moeda);
-        GetNode<Label>(label_quantia_node_path).Text = quantia.ToString();
+        GetNode<Label>(labelQuantiaNodePath).Text = quantia.ToString();
     }
     public void AtualizaEhExibeQuantia()
     {
-        GetNode<Label>(label_quantia_node_path).Visible = eh_exibe_quantia;
+        GetNode<Label>(labelQuantiaNodePath).Visible = eh_exibe_quantia;
         GetNode<Panel>("PanelContainer/Container/MoedaTexture/Panel").Visible = eh_exibe_quantia;
     }
 
     public void _on_Button_pressed()
     {
-        GetNode<TextureRect>(texture_node_path).RectPivotOffset = GetNode<TextureRect>(texture_node_path).RectSize / 2;
+        GetNode<TextureRect>(textureNodePath).RectPivotOffset = GetNode<TextureRect>(textureNodePath).RectSize / 2;
         switch (lado_moeda)
         {
             case Tipo.LADO_MOEDA.CARA:
@@ -94,16 +94,16 @@ public class Moeda : Control
                 SetLadoMoeda(Tipo.LADO_MOEDA.CARA);
                 break;
         }
-        aplicacao.GetMainNode().efeito_click.efeito_moeda_clique();
+        aplicacao.GetMainNode().efeitoClick.EfeitoMoedaClique();
         GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Play("bounce");
         GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Seek(0);
     }
-    public void centraliza_pivot()
+    public void CentralizaPivot()
     {
-        GetNode<TextureRect>(texture_node_path).RectPivotOffset = GetNode<TextureRect>(texture_node_path).RectSize / 2;
+        GetNode<TextureRect>(textureNodePath).RectPivotOffset = GetNode<TextureRect>(textureNodePath).RectSize / 2;
     }
 
-    public void play_coin_sound()
+    public void PlayCoinSound()
     {
         GetNode<AudioStreamPlayer>("AudioStreamPlayer").Seek(0);
         GetNode<AudioStreamPlayer>("AudioStreamPlayer").Playing = true;
