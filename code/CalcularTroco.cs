@@ -54,37 +54,24 @@ public class CalcularTroco : Control
 
     private void SelecionarMoedas()
     {
-        int resultado_busca_auxiliar = 0;
-        double valor_restante_auxiliar = resultadoTroco;
+        double valorRestanteAuxiliar = resultadoTroco;
         arrayQuantiaMoedasNescessarias = new int[] { 0, 0, 0, 0, 0, 0 };
 
-        while (valor_restante_auxiliar > 0)
+        double auxiliarDrouble;
+        int auxiliarInt;
+        for (int i = aplicacao.GetMainNode().GetInventario().Length - 1; i >= 0 && Math.Round(valorRestanteAuxiliar, 2) > 0; i--)
         {
-            resultado_busca_auxiliar = BuscarMelhorMoeda(valor_restante_auxiliar);
-            if (resultado_busca_auxiliar == -1)
-            {
-                arrayQuantiaMoedasNescessarias = new int[] { 0, 0, 0, 0, 0, 0 };
-                aplicacao.GetResultadoControlNode().ExibirMensagem("Moedas insuficientes.\nAbasteça e tente novamente.");
-                break;
-            }
-            else
-            {
-                valor_restante_auxiliar = Math.Round(valor_restante_auxiliar - aplicacao.valorMoedas[resultado_busca_auxiliar], 2);
-                arrayQuantiaMoedasNescessarias[resultado_busca_auxiliar] += 1;
-            }
-        }
-    }
+            auxiliarDrouble = Math.Floor(valorRestanteAuxiliar / aplicacao.valorMoedas[i]);
+            auxiliarInt = Math.Min((int)auxiliarDrouble, aplicacao.GetMainNode().GetInventario()[i]);
 
-    private int BuscarMelhorMoeda(double valor_restante)
-    {
-        for (int i = aplicacao.GetMainNode().GetInventario().Length - 1; i >= 0; i--)
-        {
-            if (valor_restante >= aplicacao.valorMoedas[i] && aplicacao.GetMainNode().GetInventario()[i] - arrayQuantiaMoedasNescessarias[i] > 0)
-            {
-                return i;
-            }
+            valorRestanteAuxiliar = Math.Round(valorRestanteAuxiliar - auxiliarInt * aplicacao.valorMoedas[i], 2);
+            arrayQuantiaMoedasNescessarias[i] += auxiliarInt;
         }
-        return -1;
+        if (Math.Round(valorRestanteAuxiliar, 2) > 0)
+        {
+            arrayQuantiaMoedasNescessarias = new int[] { 0, 0, 0, 0, 0, 0 };
+            aplicacao.GetResultadoControlNode().ExibirMensagem("Moedas insuficientes.\nAbasteça e tente novamente.");
+        }
     }
 
     public int[] GetArrayQuantiaMoedasNescessarias()
