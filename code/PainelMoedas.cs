@@ -9,7 +9,7 @@ public class PainelMoedas : Control
     delegate void QuantiaMoedaAtualizada();
     private Main MainNode;
 
-    public void atualizar_quantia_exibida()
+    public void AtualizarQuantiaExibida()
     {
         EmitSignal("QuantiaMoedaAtualizada");
     }

@@ -1,16 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sprites/icons/menu.png" type="Texture" id=1]
 [ext_resource path="res://theme/default/header_panel_styleboxflat.tres" type="StyleBox" id=2]
+[ext_resource path="res://theme/theme_default.tres" type="Theme" id=3]
 
 [node name="Header" type="Control"]
 anchor_right = 1.0
-margin_bottom = 46.0
+anchor_bottom = 0.057
+margin_bottom = -0.600002
+grow_horizontal = 0
+grow_vertical = 0
 rect_min_size = Vector2( 150, 16 )
 rect_clip_content = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.07
+theme = ExtResource( 3 )
 
 [node name="CorFundo" type="Panel" parent="."]
 anchor_right = 1.0

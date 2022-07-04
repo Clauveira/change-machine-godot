@@ -319,6 +319,7 @@ custom_constants/separation = 0
 
 [node name="Header" parent="CanvasLayer/MainControl/VBoxContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 480.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 100, 16 )
@@ -366,7 +367,7 @@ custom_constants/separation = -1
 [node name="PainelMoedas" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_right = 480.0
 margin_bottom = 376.0
-rect_min_size = Vector2( 0, 80 )
+rect_min_size = Vector2( 0, 180 )
 rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -462,7 +463,7 @@ size_flags_stretch_ratio = 0.0
 margin_top = 378.0
 margin_right = 480.0
 margin_bottom = 755.0
-rect_min_size = Vector2( 0, 200 )
+rect_min_size = Vector2( 0, 300 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -547,12 +548,12 @@ alignment = 1
 
 [node name="LabelValorConta" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
 margin_right = 464.0
-margin_bottom = 35.0
+margin_bottom = 19.0
 text = "Valor da conta:"
 clip_text = true
 
 [node name="ValorConta" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
-margin_top = 39.0
+margin_top = 23.0
 margin_right = 464.0
 margin_bottom = 87.0
 size_flags_horizontal = 3
@@ -571,12 +572,12 @@ alignment = 1
 
 [node name="LabelValorPago" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
 margin_right = 464.0
-margin_bottom = 35.0
+margin_bottom = 19.0
 text = "Valor pago:"
 clip_text = true
 
 [node name="ValorPago" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
-margin_top = 39.0
+margin_top = 23.0
 margin_right = 464.0
 margin_bottom = 87.0
 size_flags_horizontal = 3
@@ -750,9 +751,9 @@ margin_bottom = 93.0
 [node name="LabelInsuficiente" type="Label" parent="CanvasLayer/ResultadoWindowDialog/VBoxContainer/MarginContainer"]
 visible = false
 margin_left = 30.0
-margin_top = 145.0
+margin_top = 161.0
 margin_right = 350.0
-margin_bottom = 218.0
+margin_bottom = 202.0
 text = "Moedas insuficientes.
 Abasteça e tente novamente."
 align = 1
@@ -1005,9 +1006,9 @@ margin_bottom = 58.0
 [node name="SemMoedas" type="Label" parent="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl/VBoxContainer/MarginContainer"]
 visible = false
 margin_left = 30.0
-margin_top = 122.0
+margin_top = 130.0
 margin_right = 350.0
-margin_bottom = 157.0
+margin_bottom = 149.0
 text = "Sem moedas para sangria"
 align = 1
 valign = 1
@@ -1070,6 +1071,7 @@ anims/RESET = SubResource( 5 )
 pause_mode = 2
 environment = SubResource( 9 )
 
+[connection signal="tree_exiting" from="." to="." method="_on_Main_tree_exiting"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/AbastecimentoButton" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/SangriaButton" to="CanvasLayer/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_SangriaButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
