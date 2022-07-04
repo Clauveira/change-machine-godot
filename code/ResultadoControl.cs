@@ -29,7 +29,6 @@ public class ResultadoControl : VBoxContainer
         arrayQuantiaMoedasNescessariasRecebidas = aplicacao.GetCalculoTroco().GetArrayQuantiaMoedasNescessarias();
         for (int i = 0; i < arrayQuantiaMoedasNescessariasRecebidas.Length; i++)
         {
-            GD.Print("i: " + arrayQuantiaMoedasNescessariasRecebidas[i]);
             GetNode<QuantiaDaMoedaResultado>(quantiaDaMoedaNodePath + i).SetQuantiaExibida(arrayQuantiaMoedasNescessariasRecebidas[i]);
         }
     }

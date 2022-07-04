@@ -54,20 +54,16 @@ public class CalcularTroco : Control
 
     private void SelecionarMoedas()
     {
+        int resultado_busca_auxiliar = 0;
         double valor_restante_auxiliar = resultadoTroco;
         arrayQuantiaMoedasNescessarias = new int[] { 0, 0, 0, 0, 0, 0 };
-        GD.Print(resultadoTroco);
 
-        int resultado_busca_auxiliar = 0;
         while (valor_restante_auxiliar > 0)
         {
             resultado_busca_auxiliar = BuscarMelhorMoeda(valor_restante_auxiliar);
             if (resultado_busca_auxiliar == -1)
             {
-                GD.Print("SEM MOEDAS" + aplicacao.GetMainNode().GetInventario()[0]);
-
                 arrayQuantiaMoedasNescessarias = new int[] { 0, 0, 0, 0, 0, 0 };
-
                 aplicacao.GetResultadoControlNode().ExibirMensagem("Moedas insuficientes.\nAbasteça e tente novamente.");
                 break;
             }
@@ -77,41 +73,18 @@ public class CalcularTroco : Control
                 arrayQuantiaMoedasNescessarias[resultado_busca_auxiliar] += 1;
             }
         }
-        GD.Print("resultado_busca_auxiliar fim: " + resultado_busca_auxiliar);
-        GD.Print(valor_restante_auxiliar + " | " + arrayQuantiaMoedasNescessarias[0] + " _ " + arrayQuantiaMoedasNescessarias[1] + " _ " + arrayQuantiaMoedasNescessarias[2] + " _ " + arrayQuantiaMoedasNescessarias[3] + " _ " + arrayQuantiaMoedasNescessarias[4] + " _ " + arrayQuantiaMoedasNescessarias[5]);
     }
 
     private int BuscarMelhorMoeda(double valor_restante)
     {
-        GD.Print("restante: " + valor_restante);
-        if (valor_restante >= 1.0 && aplicacao.GetMainNode().GetInventario()[5] - arrayQuantiaMoedasNescessarias[5] > 0)
+        for (int i = aplicacao.GetMainNode().GetInventario().Length - 1; i >= 0; i--)
         {
-            return 5;
+            if (valor_restante >= aplicacao.valorMoedas[i] && aplicacao.GetMainNode().GetInventario()[i] - arrayQuantiaMoedasNescessarias[i] > 0)
+            {
+                return i;
+            }
         }
-        else if (valor_restante >= 0.5 && aplicacao.GetMainNode().GetInventario()[4] - arrayQuantiaMoedasNescessarias[4] > 0)
-        {
-            return 4;
-        }
-        else if (valor_restante >= 0.25 && aplicacao.GetMainNode().GetInventario()[3] - arrayQuantiaMoedasNescessarias[3] > 0)
-        {
-            return 3;
-        }
-        else if (valor_restante >= 0.10 && aplicacao.GetMainNode().GetInventario()[2] - arrayQuantiaMoedasNescessarias[2] > 0)
-        {
-            return 2;
-        }
-        else if (valor_restante >= 0.05 && aplicacao.GetMainNode().GetInventario()[1] - arrayQuantiaMoedasNescessarias[1] > 0)
-        {
-            return 1;
-        }
-        else if (valor_restante >= 0.01 && aplicacao.GetMainNode().GetInventario()[0] - arrayQuantiaMoedasNescessarias[0] > 0)
-        {
-            return 0;
-        }
-        else
-        {
-            return -1;
-        }
+        return -1;
     }
 
     public int[] GetArrayQuantiaMoedasNescessarias()

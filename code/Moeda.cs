@@ -7,9 +7,8 @@ public class Moeda : Control
 {
     [Export(PropertyHint.Range, "0,100,1,or_greater")]
     public int quantia = 0;
-
+    
     private NodePath labelQuantiaNodePath = "PanelContainer/Container/MoedaTexture/LabelQuantia";
-
     private NodePath textureNodePath = "PanelContainer/Container/MoedaTexture";
 
 
