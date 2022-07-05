@@ -3,14 +3,18 @@ using System;
 
 public class Main : Node
 {
-    private int[] inventarioMoedas = new int[6];
+    private string filepath = "user://Magnetic_Projectiles_save.data";
+    private const int versaoArquivoSave = 1;
+    private int[] inventarioMoedas = new int[6] { 0, 0, 0, 0, 0, 0 };
     public EfeitoClick efeitoClick;
-    private Aplicacao aplicacao;
+    private Aplicacao AplicacaoNode;
 
     public override void _Ready()
     {
-        aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
+        AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
         efeitoClick = GetNode<EfeitoClick>("efeito_click");
+        CarregarSave();
+        AplicacaoNode.GetPainelMoedasControl().AtualizarQuantiaExibida();
     }
     public override void _Input(InputEvent @event)
     {
@@ -32,7 +36,8 @@ public class Main : Node
             {
                 inventarioMoedas[i] += arrayQuantidade[i];
             }
-            aplicacao.GetPainelMoedasControl().atualizar_quantia_exibida();
+            AplicacaoNode.GetPainelMoedasControl().AtualizarQuantiaExibida();
+            Salvar();
             return true;
         }
         return false;
@@ -53,7 +58,8 @@ public class Main : Node
             {
                 inventarioMoedas[i] -= arrayQuantidade[i];
             }
-            aplicacao.GetPainelMoedasControl().atualizar_quantia_exibida();
+            AplicacaoNode.GetPainelMoedasControl().AtualizarQuantiaExibida();
+            Salvar();
             return true;
         }
         return false;
@@ -68,4 +74,54 @@ public class Main : Node
     {
         return inventarioMoedas;
     }
+
+    public void Salvar()
+    {
+        File file = new File();
+        file.Open(filepath, File.ModeFlags.Write);
+        //Inicio da sequencia de save
+        file.Store32(Convert.ToUInt32(versaoArquivoSave));
+        foreach (int item in inventarioMoedas)
+        {
+            file.Store32(Convert.ToUInt32(item));
+        }
+        //Final da sequencia de save
+        file.Close();
+    }
+    private void CarregarSave()
+    {
+        int versao_arquivo_carregando;
+        File file = new File();
+        if (!file.FileExists(filepath))
+        {
+            return;
+        }
+
+        file.Open(filepath, File.ModeFlags.Read);
+        //Inicio da sequencia de save
+        versao_arquivo_carregando = Convert.ToInt32(file.Get32());
+        for (int i = 0; i < inventarioMoedas.Length; i++)
+        {
+            inventarioMoedas[i] = Convert.ToInt32(file.Get32());
+        }
+        //Final da sequencia de save
+        file.Close();
+
+    }
+
+    private void _on_Main_tree_exiting()
+    {
+        Salvar();
+    }
+
+    public float SomaTodalInventario()
+    {
+        float auxiliar = 0.0f;
+        for (int i = 0; i < inventarioMoedas.Length; i++)
+        {
+            auxiliar += (float)(inventarioMoedas[i] * AplicacaoNode.valorMoedas[i]);
+        }
+        return auxiliar;
+    }
+
 }

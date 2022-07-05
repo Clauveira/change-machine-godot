@@ -4,13 +4,13 @@ using System;
 public class ResultadoControl : VBoxContainer
 {
     const string quantiaDaMoedaNodePath = "MarginContainer/ListaQuantiaMoedas/QuantiaDaMoeda"; //adicionar caractere ao fim;
-    private int[] arrayQuantiaMoedasNescessariasRecebidas;
-    private Aplicacao aplicacao;
+    private int[] arrayQuantiaMoedasNescessariasParaRetirar = new int[6] { 0, 0, 0, 0, 0, 0 };
+    private Aplicacao AplicacaoNode;
 
 
     public override void _Ready()
     {
-        aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
+        AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
     }
 
     public void _on_ButtonCancelar_pressed()
@@ -20,17 +20,22 @@ public class ResultadoControl : VBoxContainer
 
     public void _on_ButtonOk_pressed()
     {
-        aplicacao.GetMainNode().RetirarMoedas(arrayQuantiaMoedasNescessariasRecebidas);
+        AplicacaoNode.GetMainNode().RetirarMoedas(arrayQuantiaMoedasNescessariasParaRetirar);
         FecharPopup();
     }
 
     private void _on_ResultadoWindowDialog_about_to_show()
     {
-        arrayQuantiaMoedasNescessariasRecebidas = aplicacao.GetCalculoTroco().GetArrayQuantiaMoedasNescessarias();
-        for (int i = 0; i < arrayQuantiaMoedasNescessariasRecebidas.Length; i++)
+        arrayQuantiaMoedasNescessariasParaRetirar = AplicacaoNode.GetCalculoTroco().GetArrayQuantiaMoedasNescessarias();
+        for (int i = 0; i < arrayQuantiaMoedasNescessariasParaRetirar.Length; i++)
         {
-            GetNode<QuantiaDaMoedaResultado>(quantiaDaMoedaNodePath + i).SetQuantiaExibida(arrayQuantiaMoedasNescessariasRecebidas[i]);
+            GetNode<QuantiaDaMoedaResultado>(quantiaDaMoedaNodePath + i).SetQuantiaExibida(arrayQuantiaMoedasNescessariasParaRetirar[i]);
         }
+    }
+
+    private void _on_ResultadoWindowDialog_popup_hide()
+    {
+        GetNode<Label>("MarginContainer/LabelInsuficiente").Visible = false;
     }
 
     public void ExibirMensagem(string newMensagem)
@@ -41,7 +46,7 @@ public class ResultadoControl : VBoxContainer
 
     public void FecharPopup()
     {
-        aplicacao.GetResultadoWindowDialog().Hide();
+        AplicacaoNode.GetResultadoWindowDialog().Hide();
         GetNode<Label>("MarginContainer/LabelInsuficiente").Visible = false;
     }
 }
