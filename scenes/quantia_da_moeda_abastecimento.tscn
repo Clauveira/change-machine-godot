@@ -39,13 +39,13 @@ custom_constants/margin_bottom = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
 margin_left = 4.0
 margin_right = 146.0
-margin_bottom = 73.0
+margin_bottom = 72.0
 
 [node name="Moeda" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 64.0
-margin_bottom = 73.0
+margin_bottom = 72.0
 size_flags_vertical = 7
 
 [node name="SpinBox" type="SpinBox" parent="Panel/MarginContainer/HBoxContainer"]
@@ -58,4 +58,3 @@ size_flags_horizontal = 3
 size_flags_vertical = 6
 max_value = 999.0
 rounded = true
-prefix = "x "

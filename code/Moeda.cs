@@ -7,10 +7,9 @@ public class Moeda : Control
 {
     [Export(PropertyHint.Range, "0,100,1,or_greater")]
     public int quantia = 0;
-    
+
     private NodePath labelQuantiaNodePath = "PanelContainer/Container/MoedaTexture/LabelQuantia";
     private NodePath textureNodePath = "PanelContainer/Container/MoedaTexture";
-
 
     private Tipo.VALOR_MOEDA tipo_moeda = Tipo.VALOR_MOEDA.UM_REAL;
     [Export]
@@ -52,12 +51,12 @@ public class Moeda : Control
         GetNode<Panel>("PanelContainer/Container/MoedaTexture/Panel").Visible = eh_exibe_quantia;
     }
 
-    private Aplicacao aplicacao;
+    private Aplicacao AplicacaoNode;
 
     public override void _Ready()
     {
-        aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
-        aplicacao.GetPainelMoedasControl().Connect("QuantiaMoedaAtualizada", this as Moeda, "AtualizaQuantia");
+        AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
+        AplicacaoNode.GetPainelMoedasControl().Connect("QuantiaMoedaAtualizada", this as Moeda, "AtualizaQuantia");
         AtualizaQuantia();
         AtualizaTextura();
         AtualizaEhExibeQuantia();
@@ -72,7 +71,7 @@ public class Moeda : Control
 
     public void AtualizaQuantia()
     {
-        quantia = aplicacao.GetMainNode().GetQuantiaValorMoeda(tipo_moeda);
+        quantia = AplicacaoNode.GetMainNode().GetQuantiaValorMoeda(tipo_moeda);
         GetNode<Label>(labelQuantiaNodePath).Text = quantia.ToString();
     }
     public void AtualizaEhExibeQuantia()
@@ -93,7 +92,7 @@ public class Moeda : Control
                 SetLadoMoeda(Tipo.LADO_MOEDA.CARA);
                 break;
         }
-        aplicacao.GetMainNode().efeitoClick.EfeitoMoedaClique();
+        AplicacaoNode.GetMainNode().efeitoClick.EfeitoMoedaClique();
         GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Play("bounce");
         GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Seek(0);
     }

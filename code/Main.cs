@@ -3,18 +3,18 @@ using System;
 
 public class Main : Node
 {
-    private const int versaoArquivoSave = 1;
-    private int[] inventarioMoedas = new int[6];
-    public EfeitoClick efeitoClick;
-    private Aplicacao aplicacao;
     private string filepath = "user://Magnetic_Projectiles_save.data";
+    private const int versaoArquivoSave = 1;
+    private int[] inventarioMoedas = new int[6] { 0, 0, 0, 0, 0, 0 };
+    public EfeitoClick efeitoClick;
+    private Aplicacao AplicacaoNode;
 
     public override void _Ready()
     {
-        aplicacao = GetNode<Aplicacao>("/root/Aplicacao");
+        AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
         efeitoClick = GetNode<EfeitoClick>("efeito_click");
         CarregarSave();
-        aplicacao.GetPainelMoedasControl().AtualizarQuantiaExibida();
+        AplicacaoNode.GetPainelMoedasControl().AtualizarQuantiaExibida();
     }
     public override void _Input(InputEvent @event)
     {
@@ -36,7 +36,8 @@ public class Main : Node
             {
                 inventarioMoedas[i] += arrayQuantidade[i];
             }
-            aplicacao.GetPainelMoedasControl().AtualizarQuantiaExibida();
+            AplicacaoNode.GetPainelMoedasControl().AtualizarQuantiaExibida();
+            Salvar();
             return true;
         }
         return false;
@@ -57,7 +58,8 @@ public class Main : Node
             {
                 inventarioMoedas[i] -= arrayQuantidade[i];
             }
-            aplicacao.GetPainelMoedasControl().AtualizarQuantiaExibida();
+            AplicacaoNode.GetPainelMoedasControl().AtualizarQuantiaExibida();
+            Salvar();
             return true;
         }
         return false;
@@ -73,7 +75,7 @@ public class Main : Node
         return inventarioMoedas;
     }
 
-    private void Salvar()
+    public void Salvar()
     {
         File file = new File();
         file.Open(filepath, File.ModeFlags.Write);
@@ -84,7 +86,6 @@ public class Main : Node
             file.Store32(Convert.ToUInt32(item));
         }
         //Final da sequencia de save
-        GD.Print("Salvo");
         file.Close();
     }
     private void CarregarSave()
@@ -93,7 +94,6 @@ public class Main : Node
         File file = new File();
         if (!file.FileExists(filepath))
         {
-            GD.Print("Não há arquivo salvo");
             return;
         }
 
@@ -112,6 +112,16 @@ public class Main : Node
     private void _on_Main_tree_exiting()
     {
         Salvar();
+    }
+
+    public float SomaTodalInventario()
+    {
+        float auxiliar = 0.0f;
+        for (int i = 0; i < inventarioMoedas.Length; i++)
+        {
+            auxiliar += (float)(inventarioMoedas[i] * AplicacaoNode.valorMoedas[i]);
+        }
+        return auxiliar;
     }
 
 }

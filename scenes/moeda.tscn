@@ -177,15 +177,14 @@ custom_styles/panel = SubResource( 10 )
 
 [node name="LabelQuantia" type="Label" parent="PanelContainer/Container/MoedaTexture"]
 visible = false
-show_behind_parent = true
 anchor_left = 0.5
-anchor_top = 1.045
+anchor_top = 0.864
 anchor_right = 0.5
-anchor_bottom = 1.045
+anchor_bottom = 1.13308
 margin_left = -174.0
-margin_top = -66.6
+margin_top = 8.28
 margin_right = 174.0
-margin_bottom = 66.4
+margin_bottom = 0.119934
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
@@ -193,6 +192,9 @@ text = "0"
 align = 1
 valign = 1
 max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/Container/MoedaTexture"]
 anims/RESET = SubResource( 12 )
