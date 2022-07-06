@@ -55,9 +55,12 @@ public class Moeda : Control
 
     public override void _Ready()
     {
-        AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
-        AplicacaoNode.GetPainelMoedasControl().Connect("QuantiaMoedaAtualizada", this as Moeda, "AtualizaQuantia");
-        AtualizaQuantia();
+        if (!Engine.EditorHint)
+        {
+            AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
+            AplicacaoNode.GetPainelMoedasControl().Connect("QuantiaMoedaAtualizada", this as Moeda, "AtualizaQuantia");
+            AtualizaQuantia();
+        }
         AtualizaTextura();
         AtualizaEhExibeQuantia();
     }
@@ -71,7 +74,10 @@ public class Moeda : Control
 
     public void AtualizaQuantia()
     {
-        quantia = AplicacaoNode.GetMainNode().GetQuantiaValorMoeda(tipo_moeda);
+        if (!Engine.EditorHint)
+        {
+            quantia = AplicacaoNode.GetMainNode().GetQuantiaValorMoeda(tipo_moeda);
+        }
         GetNode<Label>(labelQuantiaNodePath).Text = quantia.ToString();
     }
     public void AtualizaEhExibeQuantia()
@@ -82,19 +88,23 @@ public class Moeda : Control
 
     public void _on_Button_pressed()
     {
-        GetNode<TextureRect>(textureNodePath).RectPivotOffset = GetNode<TextureRect>(textureNodePath).RectSize / 2;
-        switch (lado_moeda)
+
+        if (!Engine.EditorHint)
         {
-            case Tipo.LADO_MOEDA.CARA:
-                SetLadoMoeda(Tipo.LADO_MOEDA.COROA);
-                break;
-            case Tipo.LADO_MOEDA.COROA:
-                SetLadoMoeda(Tipo.LADO_MOEDA.CARA);
-                break;
+            GetNode<TextureRect>(textureNodePath).RectPivotOffset = GetNode<TextureRect>(textureNodePath).RectSize / 2;
+            switch (lado_moeda)
+            {
+                case Tipo.LADO_MOEDA.CARA:
+                    SetLadoMoeda(Tipo.LADO_MOEDA.COROA);
+                    break;
+                case Tipo.LADO_MOEDA.COROA:
+                    SetLadoMoeda(Tipo.LADO_MOEDA.CARA);
+                    break;
+            }
+            AplicacaoNode.GetMainNode().efeitoClick.EfeitoMoedaClique();
+            GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Play("bounce");
+            GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Seek(0);
         }
-        AplicacaoNode.GetMainNode().efeitoClick.EfeitoMoedaClique();
-        GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Play("bounce");
-        GetNode<AnimationPlayer>("PanelContainer/Container/MoedaTexture/AnimationPlayer").Seek(0);
     }
     public void CentralizaPivot()
     {
