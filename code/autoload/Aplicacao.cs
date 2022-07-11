@@ -19,12 +19,12 @@ public class Aplicacao : Node
     {
         MainNode = GetNode<Main>("/root/Main");
         AbastecimentoSangriaWindowDialog = GetNode<WindowDialog>("/root/Main/CanvasLayer/MainControl/AbastecimentoWindowDialog");
-        PainelMoedasControl = GetNode<PainelMoedas>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas");
+        PainelMoedasControl = GetNode<PainelMoedas>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas");
         ResultadoWindowDialog = GetNode<WindowDialog>("/root/Main/CanvasLayer/MainControl/ResultadoWindowDialog");
         ResultadoControlNode = GetNode<ResultadoControl>("/root/Main/CanvasLayer/MainControl/ResultadoWindowDialog/VBoxContainer");
-        CalculoTroco = GetNode<CalcularTroco>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo");
+        CalculoTroco = GetNode<CalcularTroco>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo");
         PaginaCreditos = GetNode<Control>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/CreditosControl");
-        PaginaPrincipal = GetNode<Control>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer");
+        PaginaPrincipal = GetNode<Control>("/root/Main/CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal");
     }
 
     public Main GetMainNode()

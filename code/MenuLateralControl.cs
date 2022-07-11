@@ -8,7 +8,12 @@ public class MenuLateralControl : Control
     public override void _Ready()
     {
         AplicacaoNode = GetNode<Aplicacao>("/root/Aplicacao");
-
+        AplicacaoNode.PaginaPrincipal.Visible = true;
+        AplicacaoNode.PaginaCreditos.Visible = false;
+        if (OS.GetName() == "HTML5")
+        {
+            GetNode<Label>("Panel/VBoxContainer/Label4").Visible = false;
+        }
     }
 
     private void _on_BackButton_pressed()

@@ -3,7 +3,7 @@ using System;
 
 public class Main : Node
 {
-    private string filepath = "user://Magnetic_Projectiles_save.data";
+    private string filepath = "user://TrocoPro_save.data";
     private const int versaoArquivoSave = 1;
     private int[] inventarioMoedas = new int[6] { 0, 0, 0, 0, 0, 0 };
     public EfeitoClick efeitoClick;
@@ -92,20 +92,22 @@ public class Main : Node
     {
         int versao_arquivo_carregando;
         File file = new File();
-        if (!file.FileExists(filepath))
+        if (file.FileExists(filepath))
         {
-            return;
+            file.Open(filepath, File.ModeFlags.Read);
+            //Inicio da sequencia de save
+            versao_arquivo_carregando = Convert.ToInt32(file.Get32());
+            for (int i = 0; i < inventarioMoedas.Length; i++)
+            {
+                inventarioMoedas[i] = Convert.ToInt32(file.Get32());
+            }
+            //Final da sequencia de save
+            file.Close();
         }
-
-        file.Open(filepath, File.ModeFlags.Read);
-        //Inicio da sequencia de save
-        versao_arquivo_carregando = Convert.ToInt32(file.Get32());
-        for (int i = 0; i < inventarioMoedas.Length; i++)
+        else
         {
-            inventarioMoedas[i] = Convert.ToInt32(file.Get32());
+            inventarioMoedas = new int[6] { 0, 0, 0, 0, 0, 0 };
         }
-        //Final da sequencia de save
-        file.Close();
 
     }
 

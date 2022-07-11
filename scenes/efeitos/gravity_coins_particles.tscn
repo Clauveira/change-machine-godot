@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/moedas_real.png" type="Texture" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=30]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=31]
+offsets = PoolRealArray( 0, 0.0431566, 0.869297, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="GravityCoins" type="CPUParticles2D"]
+material = SubResource( 30 )
+position = Vector2( 0, -80 )
+amount = 25
+lifetime = 5.25
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 200, 20 )
+spread = 180.0
+initial_velocity = 40.0
+angular_velocity = 200.0
+angular_velocity_random = 1.0
+radial_accel = -10.0
+radial_accel_random = 1.0
+angle = 360.0
+angle_random = 1.0
+color_ramp = SubResource( 31 )
+anim_offset = 1.0
+anim_offset_random = 1.0

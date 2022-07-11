@@ -12,7 +12,9 @@ config_version=4
 
 config/name="TrocoPro"
 run/main_scene="res://scenes/main.tscn"
+boot_splash/image="res://gd_ignore/icones/favicon-1024.png"
 config/icon="res://icon.png"
+config/windows_native_icon="res://gd_ignore/icones/favicon.ico"
 
 [autoload]
 
@@ -22,6 +24,7 @@ Aplicacao="*res://code/autoload/Aplicacao.cs"
 
 window/size/width=480
 window/size/height=800
+window/energy_saving/keep_screen_on=false
 window/handheld/orientation="portrait"
 window/ios/hide_home_indicator=false
 

@@ -48,6 +48,7 @@ public class UIMainControl : Node
         //ResultadoWindow.PopupCentered();
         ResultadoWindow.SetPosition(new Vector2(
             OS.WindowSize.x * 0.5f - ResultadoWindow.RectSize.x * 0.5f,
-            OS.WindowSize.y * 0.5f - ResultadoWindow.RectSize.y * 0.5f));
+            OS.WindowSize.y * 0.5f - ResultadoWindow.RectSize.y * 0.5f))
+            ;
     }
 }

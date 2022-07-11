@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://code/Main.cs" type="Script" id=1]
 [ext_resource path="res://scenes/header.tscn" type="PackedScene" id=2]
@@ -20,7 +20,7 @@
 [ext_resource path="res://code/UIMainControl.cs" type="Script" id=18]
 [ext_resource path="res://theme/fonts/dynamic_font_medium.tres" type="DynamicFont" id=19]
 [ext_resource path="res://scenes/menuLateralControl.tscn" type="PackedScene" id=20]
-[ext_resource path="res://theme/fonts/font.ttf" type="DynamicFontData" id=23]
+[ext_resource path="res://scenes/paginas/PaginaCreditos.tscn" type="PackedScene" id=21]
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.945098, 0.941176, 0.929412, 1 )
@@ -35,107 +35,6 @@ border_blend = true
 corner_radius_bottom_right = 400
 corner_radius_bottom_left = 400
 corner_detail = 10
-
-[sub_resource type="StyleBoxFlat" id=27]
-bg_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="Shader" id=32]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float aspect = 2.0;
-uniform vec2 size = vec2(0.3);
-uniform float speed = 0.7;
-uniform float ySpread = 1.6;
-uniform int numBlocks = 70;
-uniform float basePulse = 0.33;
-uniform vec4 color1 : hint_color = vec4(0.0,0.3, 0.6, 1.0);
-uniform vec4 color2 : hint_color = vec4(0.6, 0.0, 0.3, 1.0);
-
-float rand(float x)
-{
-    return fract(sin(x) * 4358.5453123);
-}
-
-float rand2(vec2 co)
-{
-    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5357);
-}
-
-float pulseColor()
-{
-	float myPulse = basePulse + sin(TIME) * 0.1;
-	return myPulse < 1.0 ? myPulse : 1.0;
-}
-
-float box(vec2 p, vec2 b, float r)
-{
-  return length(max(abs(p)-b,0.0))-r;
-}
-
-void fragment()
-{
-	float pulse = pulseColor();
-	
-	vec2 uv = UV - 0.5;
-	vec4 baseColor = uv.x > 0.0 ? color1 : color2;
-	
-	vec4 color = pulse*baseColor*0.5*(0.9-cos(uv.x*8.0));
-	uv.x *= aspect;
-	
-	for (int i = 0; i < numBlocks; i++)
-	{
-		float z = 1.0-0.7*rand(float(i)*1.4333); // 0=far, 1=near
-		float tickTime = TIME*z*speed + float(i)*1.23753;
-		float tick = floor(tickTime);
-		
-		vec2 pos = vec2(0.6*aspect*(rand(tick)-0.5), sign(uv.x)*ySpread*(0.5-fract(tickTime)));
-		pos.x += 0.24*sign(pos.x); // move aside
-		if (abs(pos.x) < 0.1) pos.x++; // stupid fix; sign sometimes returns 0
-		
-		// vec2 size = 1.8*z*vec2(0.04, 0.04 + 0.1*rand(tick+0.2));
-		float b = box(uv-pos, size, 0.01);
-		float dust = z*smoothstep(0.22, 0.0, b)*pulse*0.5;
-		float block = 0.2*z*smoothstep(0.002, 0.0, b);
-		float shine = 0.6*z*pulse*smoothstep(-0.002, b, 0.007);
-		color += dust*baseColor + block*z + shine;
-	}
-	
-	color -= rand2(uv)*0.04;
-	COLOR = vec4(color);
-}"
-
-[sub_resource type="ShaderMaterial" id=33]
-resource_local_to_scene = true
-shader = SubResource( 32 )
-shader_param/aspect = 0.922
-shader_param/size = Vector2( 0.08, 0.083 )
-shader_param/speed = 0.235
-shader_param/ySpread = 1.6
-shader_param/numBlocks = 4
-shader_param/basePulse = 0.693
-shader_param/color1 = Color( 0.0156863, 0.419608, 0.729412, 1 )
-shader_param/color2 = Color( 0.00784314, 0.356863, 0.447059, 1 )
-
-[sub_resource type="OpenSimplexNoise" id=30]
-octaves = 2
-period = 10.0
-
-[sub_resource type="NoiseTexture" id=31]
-resource_local_to_scene = true
-width = 80
-height = 80
-seamless = true
-noise = SubResource( 30 )
-
-[sub_resource type="DynamicFont" id=26]
-size = 47
-outline_size = 4
-outline_color = Color( 0, 0, 0, 0.341176 )
-use_filter = true
-extra_spacing_top = -8
-extra_spacing_bottom = -8
-font_data = ExtResource( 23 )
 
 [sub_resource type="Animation" id=22]
 length = 0.001
@@ -164,7 +63,7 @@ tracks/1/keys = {
 "values": [ ExtResource( 14 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/Background:modulate")
+tracks/2/path = NodePath("CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/Background:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -292,9 +191,10 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=24]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/Background:modulate")
+tracks/0/path = NodePath("CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/Background:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -415,6 +315,7 @@ rect_min_size = Vector2( 100, 16 )
 size_flags_stretch_ratio = 0.06
 
 [node name="Body" type="Control" parent="CanvasLayer/MainControl/VBoxContainer"]
+show_behind_parent = true
 margin_top = 45.0
 margin_right = 480.0
 margin_bottom = 800.0
@@ -422,7 +323,7 @@ mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body"]
+[node name="PaginaPrincipal" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -431,25 +332,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer"]
-margin_right = 480.0
-margin_bottom = 755.0
-mouse_filter = 2
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer"]
 margin_right = 480.0
 margin_bottom = 755.0
 rect_min_size = Vector2( 180, 280 )
@@ -461,7 +352,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PainelAcoes" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="PainelAcoes" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer"]
 margin_right = 480.0
 margin_bottom = 377.0
 rect_min_size = Vector2( 0, 300 )
@@ -471,7 +362,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -481,7 +372,7 @@ custom_constants/margin_top = 6
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer"]
 margin_left = 8.0
 margin_top = 6.0
 margin_right = 472.0
@@ -490,20 +381,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 18
 
-[node name="Gerenciamento" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
+[node name="Gerenciamento" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
 margin_right = 464.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 10
 alignment = 1
 
-[node name="AbastecimentoButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
+[node name="AbastecimentoButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
 margin_right = 227.0
 margin_bottom = 70.0
 mouse_default_cursor_shape = 2
@@ -513,7 +404,7 @@ text = "Abastecimento"
 icon = ExtResource( 8 )
 clip_text = true
 
-[node name="SangriaButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
+[node name="SangriaButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer"]
 margin_left = 237.0
 margin_right = 464.0
 margin_bottom = 70.0
@@ -524,7 +415,7 @@ text = "Sangria"
 icon = ExtResource( 6 )
 clip_text = true
 
-[node name="Calculo" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
+[node name="Calculo" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer"]
 margin_top = 88.0
 margin_right = 464.0
 margin_bottom = 369.0
@@ -533,7 +424,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 script = ExtResource( 5 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
@@ -542,7 +433,7 @@ size_flags_vertical = 3
 custom_constants/separation = 10
 alignment = 1
 
-[node name="ContaContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
+[node name="ContaContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
 margin_right = 464.0
 margin_bottom = 87.0
 rect_clip_content = true
@@ -550,13 +441,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="LabelValorConta" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
+[node name="LabelValorConta" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
 margin_right = 464.0
 margin_bottom = 19.0
 text = "Valor da conta:"
 clip_text = true
 
-[node name="ValorConta" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
+[node name="ValorConta" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/ContaContainer"]
 margin_top = 23.0
 margin_right = 464.0
 margin_bottom = 87.0
@@ -566,7 +457,7 @@ max_value = 1e+14
 step = 0.01
 prefix = "R$"
 
-[node name="PagoContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
+[node name="PagoContainer" type="VBoxContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
 margin_top = 97.0
 margin_right = 464.0
 margin_bottom = 184.0
@@ -574,13 +465,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="LabelValorPago" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
+[node name="LabelValorPago" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
 margin_right = 464.0
 margin_bottom = 19.0
 text = "Valor pago:"
 clip_text = true
 
-[node name="ValorPago" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
+[node name="ValorPago" type="SpinBox" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/PagoContainer"]
 margin_top = 23.0
 margin_right = 464.0
 margin_bottom = 87.0
@@ -590,7 +481,7 @@ max_value = 1e+14
 step = 0.01
 prefix = "R$"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer"]
 margin_top = 194.0
 margin_right = 464.0
 margin_bottom = 281.0
@@ -600,14 +491,14 @@ custom_constants/margin_right = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 12
 
-[node name="CalcularButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer"]
+[node name="CalcularButton" type="Button" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer"]
 margin_left = 20.0
 margin_right = 444.0
 margin_bottom = 75.0
 mouse_default_cursor_shape = 2
 text = "Calcular"
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer"]
 margin_top = 376.0
 margin_right = 480.0
 margin_bottom = 379.0
@@ -617,7 +508,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PainelMoedas" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="PainelMoedas" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer"]
 margin_top = 378.0
 margin_right = 480.0
 margin_bottom = 755.0
@@ -631,7 +522,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+[node name="Background" type="TextureRect" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas"]
 modulate = Color( 1, 1, 1, 0.32549 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -645,7 +536,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas"]
 anchor_left = 0.01
 anchor_right = 0.99
 anchor_bottom = 1.0
@@ -663,7 +554,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Moeda1" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+[node name="Moeda1" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 148.0
@@ -671,7 +562,7 @@ margin_bottom = 155.0
 TipoMoeda = 0
 EhExibeQuantia = true
 
-[node name="Moeda2" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+[node name="Moeda2" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 160.0
@@ -680,7 +571,7 @@ margin_bottom = 155.0
 TipoMoeda = 1
 EhExibeQuantia = true
 
-[node name="Moeda3" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+[node name="Moeda3" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 320.0
@@ -689,7 +580,7 @@ margin_bottom = 155.0
 TipoMoeda = 2
 EhExibeQuantia = true
 
-[node name="Moeda4" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+[node name="Moeda4" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 177.0
@@ -698,7 +589,7 @@ margin_bottom = 332.0
 TipoMoeda = 3
 EhExibeQuantia = true
 
-[node name="Moeda5" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+[node name="Moeda5" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 160.0
@@ -708,7 +599,7 @@ margin_bottom = 332.0
 TipoMoeda = 4
 EhExibeQuantia = true
 
-[node name="Moeda6" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
+[node name="Moeda6" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 320.0
@@ -717,7 +608,7 @@ margin_right = 468.0
 margin_bottom = 332.0
 EhExibeQuantia = true
 
-[node name="LabelTotal" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas"]
+[node name="LabelTotal" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -58.0
@@ -729,7 +620,7 @@ text = "Saldo: 123,45"
 align = 1
 valign = 1
 
-[node name="PanelSaldo" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelMoedas/LabelTotal"]
+[node name="PanelSaldo" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelMoedas/LabelTotal"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -737,45 +628,8 @@ margin_left = -55.0
 margin_right = 49.0
 custom_styles/panel = SubResource( 10 )
 
-[node name="CreditosControl" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body"]
+[node name="CreditosControl" parent="CanvasLayer/MainControl/VBoxContainer/Body" instance=ExtResource( 21 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="ColorRect" type="Panel" parent="CanvasLayer/MainControl/VBoxContainer/Body/CreditosControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_styles/panel = SubResource( 27 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainControl/VBoxContainer/Body/CreditosControl"]
-material = SubResource( 33 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-rect_pivot_offset = Vector2( 240, 377 )
-size_flags_horizontal = 7
-size_flags_vertical = 7
-texture = SubResource( 31 )
-expand = true
-
-[node name="Label" type="Label" parent="CanvasLayer/MainControl/VBoxContainer/Body/CreditosControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 26 )
-text = "Desenvolvedor:
-Clauê Silveira"
-align = 1
-valign = 1
-
-[node name="Control" type="Control" parent="CanvasLayer/MainControl/VBoxContainer/Body/CreditosControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
 
 [node name="ResultadoWindowDialog" type="WindowDialog" parent="CanvasLayer/MainControl"]
 visible = true
@@ -1255,9 +1109,9 @@ environment = SubResource( 25 )
 
 [connection signal="tree_exiting" from="." to="." method="_on_Main_tree_exiting"]
 [connection signal="resized" from="CanvasLayer/MainControl" to="CanvasLayer/MainControl/CalculaTamanhoResize" method="_on_MainControl_resized"]
-[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/AbastecimentoButton" to="CanvasLayer/MainControl/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/SangriaButton" to="CanvasLayer/MainControl/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_SangriaButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/MarginContainer/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/AbastecimentoButton" to="CanvasLayer/MainControl/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_AbastecimentoButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Gerenciamento/HBoxContainer/SangriaButton" to="CanvasLayer/MainControl/AbastecimentoWindowDialog/AbastecimentoSangriaControl" method="_on_SangriaButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo/VBoxContainer/MarginContainer/CalcularButton" to="CanvasLayer/MainControl/VBoxContainer/Body/PaginaPrincipal/ScrollContainer/VBoxContainer/PainelAcoes/MarginContainer/VBoxContainer/Calculo" method="_on_CalcularButton_pressed"]
 [connection signal="about_to_show" from="CanvasLayer/MainControl/ResultadoWindowDialog" to="CanvasLayer/MainControl/ResultadoWindowDialog/VBoxContainer" method="_on_ResultadoWindowDialog_about_to_show"]
 [connection signal="popup_hide" from="CanvasLayer/MainControl/ResultadoWindowDialog" to="CanvasLayer/MainControl/ResultadoWindowDialog/VBoxContainer" method="_on_ResultadoWindowDialog_popup_hide"]
 [connection signal="pressed" from="CanvasLayer/MainControl/ResultadoWindowDialog/VBoxContainer/ButtonsMarginContainer/HBoxContainer/ButtonCancelar" to="CanvasLayer/MainControl/ResultadoWindowDialog/VBoxContainer" method="_on_ButtonCancelar_pressed"]
